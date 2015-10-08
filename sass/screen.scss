@@ -1,0 +1,207 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "grids";
+@import "compass";
+
+
+/* SASS VARIABLES */
+
+
+// $bg-color: #818181;
+// $bg-color: #121C25;
+$bg-color: #00796B;
+$font-size: 1em;
+$letter-spacing: .25em;
+
+$header-height: 80px;
+
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  font-size: $font-size;
+  background-color: #FFFFFF;
+  @include container;
+  @include box-sizing(border-box);
+}
+
+#app {
+  position: relative;
+  top: $header-height;
+  height: 1000px;
+  background-color: orange;
+}
+
+#header {
+  height: $header-height;
+  background-color: gray;
+  display: block;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 80px;
+  z-index: 999;
+}
+
+
+//login-view
+#login-form {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px 4%;
+  background-color: $bg-color;
+  color: whitesmoke;
+  letter-spacing: $letter-spacing;
+  text-transform: uppercase;
+  font-family: inherit;
+
+  #login-name, #login-password, #login-submit {
+    height: 60px;
+    width: 100%;
+    display: block;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    background-color: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  };
+};
+
+//Add-task view
+.addtaskview {
+
+  margin: 0 auto;
+  padding: 10px 4%;
+  background-color: $bg-color;
+  color: whitesmoke;
+
+  #addtask, #descriptionInput {
+    width: 100%;
+    max-width: 100%;
+    height: 30px;
+    padding: 4px;
+  }
+  #descriptionInput {
+    height: 125px;
+  }
+  #datepickerIcon, #priority, #tag {
+    @include span(4);
+    height: 20px;
+    margin: 0 auto;
+    text-align: center;
+  i {
+      font-size: 1.5em;
+    }
+  }
+
+}
+
+#ui-datepicker-div, .ui-datepicker-calendar {
+  width: 400px;
+  height: 400px;
+  background-color: whitesmoke;
+  padding: 25px;
+}
+
+.toggleCalendar {
+  position: absolute;
+  top: 191.75px;
+  left: 112.35px;
+  z-index: 1;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+// element {
+// }
+// body {
+//     font-family: sans-serif;
+//     font-size: 1em;
+//     background-color: #FFF;
+// }
+// html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+//     margin: 0px;
+//     padding: 0px;
+//     border: 0px none;
+//     font-family: inherit;
+//     font-style: inherit;
+//     font-weight: inherit;
+//     line-height: inherit;
+//     font-size-adjust: inherit;
+//     font-stretch: inherit;
+//     font-feature-settings: inherit;
+//     font-language-override: inherit;
+//     font-kerning: inherit;
+//     font-synthesis: inherit;
+//     font-variant: inherit;
+//     font-size: 100%;
+//     vertical-align: baseline;
+// }
+// * {
+//     box-sizing: border-box;
+// }
+// html {
+//     line-height: 1;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+// style="position: absolute; top: 0px; left: 205.25px; z-index: 1; display: none;"
+//
+//
+// position: absolute; top: 0px; left: 205.25px; z-index: 1; display: block;
+
+
+
+// var $addtask = $('<input id="addtask" type="text" placeholder="add task"></input>');
+// var $descriptionInput = $('<input id="descriptionInput" type="text placeholder="description"> </input>');
+// var $timeIcon = $('<div id="timeIcon"> </div>');
+// var $priority = $('<div id="priority"> </div>');
+// var $tag = $('<div id="tag"> </div>');
+// var $submitTask = $('<div id="submitTask"> </div>').html('<p> submit task </p>');
+// var $discard = $('<div id="discard"> </div>').html('<p> discard task </p>');
