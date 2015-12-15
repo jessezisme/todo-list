@@ -1,0 +1,18 @@
+{
+  "name": "todo-list",
+  "description": "todo list application",
+  "main": "main.js",
+  "authors": [
+    "JesseZ1983 <jessezanavich@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/JesseZ1983/todo-list",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
