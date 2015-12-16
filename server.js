@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var app = express();
 
-var hide = require('./.git_ignore/hide.js')
+var hide = require('./git_ignore/hide.js')
 var db = require('orchestrate')(hide.dbkey);
 
 app.use(bodyParser.json());
@@ -11,6 +11,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+
+
+// db.post('todo-users', {
+//   "user": "test",
+//   "password": "password"
+// })
+// .then(function(result) {
+//   console.log(result)
+// })
+// .fail(function(error) {
+//   console.log(err); 
+// })
 
 
 
@@ -21,33 +33,59 @@ app.get('/', function(req, res) {
 
 app.post('/login', function(req, res) {
 
-  var user = req.body.username; 
-  var password = req.body.password; 
+  var loginUser = req.body.username.toLowerCase(); 
+  var loginPassword = req.body.password.toLowerCase(); 
 
-  console.log(req); 
-  console.log('received');
-
-  db.search('todo-users', 'value.user: ' + ("" + user) )
+  db.search('todo-users', 'value.user: ' + ("" + loginUser) )
   .then(function (result) {
 
-    var dbUser = result.body.results[0].value.password; 
-    var dbPassword = result.body.results[0].value.name; 
+    var dbUser = result.body.results[0].value.user.toLowerCase(); 
+    var dbPassword = result.body.results[0].value.password.toLowerCase(); 
 
-    if (user == dbUser) {
-      if (password == dbPassword) {
-        console.log('match');
+    if (loginUser == dbUser) {
+      if (loginPassword == dbPassword) {
         res.send(true);
       }
       else {
-        res.send("incorrect password");
-      } 
+        res.send("incorrect password" );
+      }
     }
     else {
-      res.send("no record of user");
+      res.send("no record");
     }
   });
 
 });  
+
+
+
+app.get('/task/:loginUser', function(req, res) {
+
+  db.search('todo-tasks', 'value.user: ' + ("" + req.params.loginUser)  )
+  .then(function (result) {
+    
+    console.log(result); 
+
+  })
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

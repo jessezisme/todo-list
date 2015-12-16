@@ -32,12 +32,17 @@
 
 
 
-  <!-- TEMPLATES -->
-  <script type="template-x-handlebars" id="login-template"> 
+  <!-- 
+  ====================================
+    TEMPLATES 
+  ====================================
+  -->
 
+  <!-- Login  -->
+  <script type="template-x-handlebars" id="login-template"> 
     <form>
         <div class="input-field">
-            <input name="username" id="username" type="email" class="validate">
+            <input name="username" id="username" type="email">
             <label for="username">Email</label>
         </div>
 
@@ -49,10 +54,56 @@
       <button class="btn waves-effect waves-light" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>
-      
+
     </form>
+  </script>
+
+
+
+
+  <!--  Home -->
+  <script type="template-x-handlebars" id="task-template">
+
+
+    <div id="#upload-task">
+      <form>
+
+        <div>
+          <div class="input-field">
+            <input id="input_text" id="task-title" type="text">
+            <label for="input_text">Add a new to-do </label>
+          </div>
+        </div>
+
+
+        <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons large">stars</i></a>      
+
+        <div>
+          <div class="input-field">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Textarea</label>
+          </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>  
+
+      </form>
+    </div>
+
+
+    <div id="#open-task">
+    </div> 
+
+
+    <div id="#closed-task">
+    </div> 
+
 
   </script> 
+
+
 
 
 
@@ -74,8 +125,13 @@
     <script type='text/javascript' src='bower_components/handlebars/handlebars.js'></script>
     <script type='text/javascript' src='bower_components/js-cookie/src/js.cookie.js'></script>
 
-    <script type="text/javascript" src="js/models/models.js"></script>
-    <script type="text/javascript" src="js/views/views.js"></script>
+
+    <script type="text/javascript" src="js/namespace/namespace.js"></script>
+    <script type="text/javascript" src="js/model/model.js"></script>
+    <script type="text/javascript" src="js/collection/collection.js"> </script> 
+
+    <script type="text/javascript" src="js/view/login.js"></script>
+    <script type="text/javascript" src="js/view/task.js"></script>
     <script type="text/javascript" src="js/router/router.js"> </script> 
 
     <script type="text/javascript" src="js/main.js"></script>

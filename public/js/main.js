@@ -1,7 +1,8 @@
-var App =   App || {};
-var app = app || {};
+var App = App || {};
+var app    = app || {};
 
-app.router = app.router || new App.Routers.Router(); 
+app.router = new App.Router.Router();
+
 
 $(document).ready(function() {
 

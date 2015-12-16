@@ -1,23 +1,27 @@
-var App =   App || {};
-App.Routers     || (App.Routers     = {});
 
-var app = app || {};
-app.views  = app.views || {};
-
-
-
-App.Routers.Router = Backbone.Router.extend({
+App.Router.Router = Backbone.Router.extend({
 	
 	routes: {
 		'':	'index',
+		'tasks': 'tasks'
+	},
+
+	removeAllViews: function() {
+		for (var key in app.view) {
+			app.view[key].remove();
+			delete app.view[key];
+		}
 	},
 
 	index: function() {
-		console.log('alert');
-		app.views.login = new App.Views.Login;
-	}
-	
+		this.removeAllViews(); 
+		app.view.login = new App.View.Login;
+	},
 
+	tasks: function() {
+		this.removeAllViews();
+		app.view.task = new App.View.Task; 
+	}
 
 
 })
