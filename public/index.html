@@ -102,32 +102,24 @@
 
 
   <!--  Individual Tasks -->
-  <script type="template-x-handlebars" id="task-template">   
+  <script type="template-x-handlebars" id="task-template">
+  
+    <ul class="collapsible" data-collapsible="expandable">     
 
-      <ul class="collapsible" data-collapsible="expandable">
+      <li>
+        <i id="task-complete" class="large material-icons">chat_bubble_outline</i>
+        <div id="task-header-div" class="collapsible-header"> 
+          {{ title }} 
+          {{ due}}
+        </div>
 
-        <li>
-          <div id="task-complete-div">
-            <p>
-              <input type="checkbox" id="task-complete" />
-              <label for="task-complete"></label>
-            </p>
-          </div> 
-
-          <div id="task-header-div" class="collapsible-header"> 
-            {{ title }} 
-            {{ due}}
-          </div>
-
-          <div id="task-body-div" class="collapsible-body">
-              {{ description }}
-          </div>
-        </li> 
-
+        <div id="task-body-div" class="collapsible-body">
+            {{ description }}
+        </div>
+      </li> 
     </ul>
 
   </script> 
-
 
 
 

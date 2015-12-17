@@ -9,7 +9,7 @@ App.Model.User = Backbone.Model.extend({
 
 
 App.Model.Task = Backbone.Model.extend({
-	url: 'task',
+	urlRoot: 'task',
 	defaults: {
 		user: '',
 		title:'',

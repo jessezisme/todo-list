@@ -38,10 +38,18 @@ App.View.TaskWindow = Backbone.View.extend({
     'click #submit-button' : 'createTask'
   },
 
+
+   /*=============================================  
+    createTask
+    
+    - Creates new tasks 
+  =============================================*/
   createTask: function(event) {
 
     event.preventDefault(); 
-
+    /*----------  
+      Build task object 
+    ----------*/    
     var taskUser = Cookies.get('todo');
   	var taskTitle = $('#task-title').val();
   	var taskDesription = $('#task-description').val();
@@ -53,67 +61,96 @@ App.View.TaskWindow = Backbone.View.extend({
       description: taskDesription,
       due: taskDue
     });
-
+    /*----------  
+      - Save individual task model to server
+    ----------*/  
     app.model.task.save()
       .done(function(response) {
-        app.model.task.set("id", response.serverKey);
+        console.log("app.model.task: successful save"); 
       })
       .fail(function(response) {
-        console.log(response);
+        console.log("app.model.task: failed model save");
       });
-
+    /*----------  
+      - Create view for model
+    ----------*/   
     app.view.task = new App.View.Task({
       model: app.model.task
-    }); 
-
+    });
+    /*----------  
+      - Add model to collection 
+    ----------*/    
     app.collection.task.add(app.model.task); 
-
+ 
   }
+  /*=====  End createTask ======*/
 
-})
+
+}); 
 
 
 App.View.Task = Backbone.View.extend({
 
-	tagName: 'section',
-	className: 'openTaskView',
+	// tagName: 'section',
+	// className: 'openTaskView',
 
-	template: Handlebars.compile( $('#task-template').html() ),
+	// template: Handlebars.compile( $('#task-template').html() ),
 
-  initialize: function() {
-    console.log("app.view.task: created"); 
-    this.render();     
+ //  initialize: function() {
 
-  },
+ //    // this.listenTo(this.model, 'change', this.model.save())
 
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+ //    this.model.on('change', this.saveData, this);
+ //    // console.log("app.view.task: created"); 
 
-    if (this.model.toJSON().status == "open") {
-      $("#open-task-div").append(this.$el);
-    }
-    else {
-      $("#closed-task-div").append(this.$el); 
-    }
+ //    this.render();     
 
-  },
+ //  },
 
-  events: {
-    'click #task-header-div': 'toggleDescription',
-    'click #task-complete-div' : 'complete'
-  },
+ //  saveData: function() {
+ //    console.log('saving');
+ //    this.model.save(); 
+ //    this.model.get("open");
+ //  },
 
-  toggleDescription: function(event) {
-    var target = $( event.target );
-    target.parent('li').find('.collapsible-body').toggle(); 
-  },
+ //  render: function() {
 
-  complete: function(event) {
-    console.log('complete')
-    
+ //    this.$el.html(this.template(this.model.toJSON()));
 
-    // var target = $( event.target );
-    // target.toggleClass('checked');
-  }
+ //    if (this.model.toJSON().status == "open") {
+ //      $("#open-task-div").append(this.$el);
+ //    }
+ //    else {
+ //      $("#closed-task-div").append(this.$el); 
+ //    }
+
+ //  },
+
+ //  events: {
+ //    'click #task-header-div': 'toggleDescription',
+ //    'click #task-complete' : 'complete'
+ //  },
+
+ //  toggleDescription: function(event) {
+ //    var target = $( event.target );
+ //    target.parent('li').find('.collapsible-body').toggle(); 
+ //  },
+
+ //  complete: function(event) {
+ //    if (this.model.get("open") === false) {
+ //      this.model.set("open", true)
+ //      $('#task-complete').html("chat_bubble_outline")
+ //      console.log(this.model.get("open"));
+ //    }
+ //    else  {
+ //      this.model.set("open", false);
+ //      $('#task-complete').html("done");
+ //      console.log(this.model.get("open"));
+ //    }
+
+ //  }
 
 })
+
+
+
