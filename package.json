@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JesseZ1983/todo-list/issues"
   },
-  "homepage": "https://github.com/JesseZ1983/todo-list#readme"
+  "homepage": "https://github.com/JesseZ1983/todo-list#readme",
+  "dependencies": {
+    "shortid": "~2.2.4"
+  }
 }

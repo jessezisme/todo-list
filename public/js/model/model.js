@@ -9,30 +9,12 @@ App.Model.User = Backbone.Model.extend({
 
 
 App.Model.Task = Backbone.Model.extend({
+	url: 'task',
 	defaults: {
 		user: '',
 		title:'',
 		description:'',
 		due: '',
-		priority: '',
-		shared: [],
-		status:'unassigned'
+		status:'open'
 	},
 });
-
-// // IssueModel.fetch();
-// var UserCollection = Backbone.Collection.extend({
-// 	model:UserModel, url: "/users"
-// });
-
-// var IssueCollection = Backbone.Collection.extend({
-// 	model:IssueModel, url: "/tasks"
-// });
-
-
-
-// 	//--------------
-// 	 // Initializers
-// 	 //--------------
-
-// 		// 	app.appView = new app.AppView();

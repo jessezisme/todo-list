@@ -3,6 +3,10 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var app = express();
 
+var shortid = require('shortid');
+// shortid.generate()
+
+
 var hide = require('./git_ignore/hide.js')
 var db = require('orchestrate')(hide.dbkey);
 
@@ -58,19 +62,54 @@ app.post('/login', function(req, res) {
 });  
 
 
+app.get('/collection', function(req, res) {
 
-app.get('/task/:loginUser', function(req, res) {
-
-  db.search('todo-tasks', 'value.user: ' + ("" + req.params.loginUser)  )
-  .then(function (result) {
-    
-    console.log(result); 
-
-  })
-
-});
+  console.log('get collection request');
+  res.send(true)
+})
 
 
+app.post('/collection', function(req, res) {
+
+  console.log('post collection request');
+  res.send(true)
+})
+
+
+app.post('/task', function(req, res) {
+
+  console.log(req.body); 
+  var key = shortid.generate(); 
+  
+  var responseKey = {
+    serverKey: key
+  }
+
+  db.put('todo-tasks', key, req.body)
+    .then(function (result) {
+      console.log(key);
+      res.send(responseKey);
+    })
+    .fail(function (err) {
+      res.send(false); 
+    }); 
+
+})
+
+
+
+// app.get('/collection/:id', function(req, res) {
+
+//   console.log('task request');
+//   res.send(true)
+// })
+
+
+// app.get('/collection/:id', function(req, res) {
+
+//   console.log('task request');
+//   res.send(true)
+// })
 
 
 

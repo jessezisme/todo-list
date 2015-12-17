@@ -20,7 +20,7 @@ App.Router.Router = Backbone.Router.extend({
 
 	tasks: function() {
 		this.removeAllViews();
-		app.view.task = new App.View.Task; 
+		app.view.taskWindow = new App.View.TaskWindow; 
 	}
 
 

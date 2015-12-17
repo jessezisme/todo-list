@@ -22,6 +22,11 @@
     <div id="body-wrap">
     </div> 
 
+    <div id="open-task-div">
+    </div> 
+
+    <div id="closed-task-div">
+     </div> 
 
 </div> 
 
@@ -38,7 +43,7 @@
   ====================================
   -->
 
-  <!-- Login  -->
+   <!-- Login  -->
   <script type="template-x-handlebars" id="login-template"> 
     <form>
         <div class="input-field">
@@ -61,57 +66,61 @@
 
 
 
-  <!--  Home -->
-  <script type="template-x-handlebars" id="task-template">
-
+  <!--  Task page and New Task Uploader-->
+  <script type="template-x-handlebars" id="task-window-template">
 
     <div id="#upload-task">
       <form>
 
         <div>
           <div class="input-field">
-            <input id="input_text" id="task-title" type="text">
+            <input id="task-title" id="input_text" type="text">
             <label for="input_text">Add a new to-do </label>
           </div>
         </div>
 
+        <input type="date" id="task-due" class="datepicker">
 
         <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons large">stars</i></a>      
 
         <div>
           <div class="input-field">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <textarea id="task-description" id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Textarea</label>
           </div>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
         </button>  
 
       </form>
     </div>
 
-
-    <div id="#open-task">
-    </div> 
-
-
-    <div id="#closed-task">
-    </div> 
-
-
   </script> 
 
 
 
+  <!--  Individual Tasks -->
+  <script type="template-x-handlebars" id="task-template">   
 
+      <ul class="collapsible" data-collapsible="expandable">
 
+        <li>
+          <div class="collapsible-header"> 
+            {{ title }} 
+            {{ due}}
 
+          </div>
 
+          <div class="collapsible-body">
+              {{ description }}
+          </div>
+        </li> 
 
+    </ul>
 
-
+  </script> 
 
 
 
