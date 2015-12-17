@@ -107,13 +107,19 @@
       <ul class="collapsible" data-collapsible="expandable">
 
         <li>
-          <div class="collapsible-header"> 
+          <div id="task-complete-div">
+            <p>
+              <input type="checkbox" id="task-complete" />
+              <label for="task-complete"></label>
+            </p>
+          </div> 
+
+          <div id="task-header-div" class="collapsible-header"> 
             {{ title }} 
             {{ due}}
-
           </div>
 
-          <div class="collapsible-body">
+          <div id="task-body-div" class="collapsible-body">
               {{ description }}
           </div>
         </li> 

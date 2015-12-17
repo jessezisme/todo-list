@@ -82,12 +82,7 @@ App.View.Task = Backbone.View.extend({
 
   initialize: function() {
     console.log("app.view.task: created"); 
-    this.render(); 
-    
-    $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
-
+    this.render();     
 
   },
 
@@ -101,17 +96,24 @@ App.View.Task = Backbone.View.extend({
       $("#closed-task-div").append(this.$el); 
     }
 
+  },
+
+  events: {
+    'click #task-header-div': 'toggleDescription',
+    'click #task-complete-div' : 'complete'
+  },
+
+  toggleDescription: function(event) {
+    var target = $( event.target );
+    target.parent('li').find('.collapsible-body').toggle(); 
+  },
+
+  complete: function(event) {
+    console.log('complete')
     
 
-
-    // if (this.model.toJSON().status == "open") {
-    //   $('#body-wrap #open-task').append(this.$el);
-    // }
-    // else {
-    //   $('#body-wrap #closed-task').append(this.$el); 
-    // }
-
+    // var target = $( event.target );
+    // target.toggleClass('checked');
   }
-
 
 })

@@ -4,7 +4,7 @@ var app    = app || {};
 app.router = new App.Router.Router();
 
 
-$(document).ready(function() {      
+$(document).ready(function() {    
 
 
 	Backbone.history.start();	

@@ -15,6 +15,6 @@ App.Model.Task = Backbone.Model.extend({
 		title:'',
 		description:'',
 		due: '',
-		status:'open'
+		open: true
 	},
 });
