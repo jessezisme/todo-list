@@ -71,14 +71,13 @@ app.get('/collection', function(req, res) {
 =           Upload New Task          =
 =============================================*/  
 app.post('/task', function(req, res) { 
-
   /*----------  
     - Generates id for each task, using SHORTID plugin module
     - Adds id to task model 
   ----------*/  
   var key = shortid.generate(); 
   req.body.id = key; 
-  console.log(req.body);
+  console.log("new task body is: " + req.body);
 
   /*----------  
     - Upload task to server
@@ -89,46 +88,37 @@ app.post('/task', function(req, res) {
       res.send(req.body); 
     })
     .fail(function (err) {
-      res.send(); 
+      res.send(false); 
     }); 
 
 })
-/*=====  End upload new task =================*/
+/*======================*/
 
 
+/*=============================================
+=           Save Model       =
+=============================================*/  
+app.put('/task/:id', function(req, res) {
+
+  console.log('task put request; model ID is: ' + req.params.id);
+  console.log("task put request body is: " + req.body); 
+  var key = req.params.id;   
+
+  db.put('todo-tasks', key, req.body)
+  .then(function (result) {
+    res.send(req.body);
+  })
+  .fail(function (err) {
+    res.send(false); 
+  });   
+
+})
+/*======================*/
 
 
-
-
-
-
-// app.put('/task/:id', function(req, res) {
-
-//   var key = req.params.id; 
-
-//   var saveResponse = {
-//     serverSuccess: true,
-//     serverError: false
-//   }
-
-//   console.log('the request body is: ' + req.body); 
-
-//   db.put('todo-tasks', key, req.body)
-//   .then(function (result) {
-//     // console.log(key);
-//     // console.log('the server response is: ' + result); 
-//     res.send(true);
-//   })
-//   .fail(function (err) {
-//     res.send(false); 
-//   });   
-
-// })
-
-
-
-
+/*=============================================
+=           Run Server       =
+=============================================*/ 
 app.listen(3000, function () {
     console.log("server started");
-    console.log(hide.dbkey);
 });

@@ -7,6 +7,7 @@ App.Router.Router = Backbone.Router.extend({
 	},
 
 	removeAllViews: function() {
+		console.log("removing all views")
 		for (var key in app.view) {
 			app.view[key].remove();
 			delete app.view[key];

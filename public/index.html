@@ -4,32 +4,54 @@
     <title>Todo App</title>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
     <!-- Style Link-->
-    <link rel="stylesheet" type="text/css" href="/css/screen.css">
-    <!-- Compiled and minified CSS -->
+      <!-- Google Materialize-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">       
+
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/Ionicons/css/ionicons.min.css">
+
 
 </head>
 
-
 <body>
 
-<div class="container">
+  <header> 
+    <nav class="blue-grey">
+      <div class="nav-wrapper">
+        <a href="#" class="center brand-logo">Logo</a>
+      </div>
+    </nav>
+  </header> 
 
-    <div id="body-wrap">
+
+
+
+
+
+
+  <main> 
+    <div class="container">
+        <div id="body-wrap">
+        </div> 
     </div> 
+  </main> 
 
-    <div id="open-task-div">
-    </div> 
 
-    <div id="closed-task-div">
-     </div> 
 
-</div> 
-
+    <div id="root">
+    <div id="root_footer">
+    </div>
+    </div>
+    <div id="footer" class="blue-grey darken-4">
+      <div class="container">
+        Footer content goes here.
+      </div> 
+    </div>
 
 
 
@@ -45,22 +67,43 @@
 
    <!-- Login  -->
   <script type="template-x-handlebars" id="login-template"> 
-    <form>
-        <div class="input-field">
-            <input name="username" id="username" type="email">
-            <label for="username">Email</label>
-        </div>
 
-        <div class="input-field">
-          <input name="password" id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
+  <div class="container">
 
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
+    <div id="button-wrap">
+      <a class="waves-effect waves-light btn-large  teal accent-4"> Login</a>
+      <a class="register waves-effect waves-light btn-large  teal-text accent-4"> New User</a>
+    </div> 
 
-    </form>
+    <div id="form-wrap" class="card">
+
+      <h2> Login </h2> 
+
+      <form>
+          <div class-"inner-form-wrap">
+
+          <div class="login-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label">       
+            <input name="username" class="mdl-textfield__input" type="text" id="username">
+            <label class="mdl-textfield__label" for="username"> Username </label>
+          </div>
+
+          <div class="login-wrap dl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+            <input name="username" class="mdl-textfield__input " type="password" id="password">            
+            <label class="mdl-textfield__label " for="password"> Password </label> 
+          </div>
+
+          <div id="button-div">
+            <button class="btn waves-effect waves-light  teal accent-4" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+             </button>
+          </div>
+
+        </div> 
+      </form>    
+    </div>
+
+  </div>  
+
   </script>
 
 
@@ -69,17 +112,26 @@
   <!--  Task page and New Task Uploader-->
   <script type="template-x-handlebars" id="task-window-template">
 
-    <div id="#upload-task">
+
+  <div class="container">
+
+
+    <div id="upload-task">
       <form>
 
-        <div>
+        <div id="task-title-wrap">
           <div class="input-field">
-            <input id="task-title" id="input_text" type="text">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="icon_prefix2 task-title input_text" class="materialize-textarea"></textarea>
             <label for="input_text">Add a new to-do </label>
           </div>
         </div>
 
-        <input type="date" id="task-due" class="datepicker">
+        <div id="date-wrap" class="input-field">
+          <i class="material-icons prefix">schedule</i>
+          <input type="date" id="task-due" class="datepicker">
+          <label for="task-due"> Set Due-date </label>
+        </div> 
 
         <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons large">stars</i></a>      
 
@@ -97,7 +149,24 @@
       </form>
     </div>
 
+    <div id="open-task-div"> Open tasks
+    </div> 
+
+    <div id="closed-task-div"> Closed tasks
+     </div> 
+
+
+  </div> 
+
+
+
+
+
   </script> 
+
+
+
+
 
 
 
@@ -124,14 +193,12 @@
 
 
 
-
     <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
     <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
     <script type='text/javascript' src='bower_components/lodash/lodash.js'></script>
     <script type='text/javascript' src='bower_components/backbone/backbone.js'></script>
     <script type='text/javascript' src='bower_components/handlebars/handlebars.js'></script>
     <script type='text/javascript' src='bower_components/js-cookie/src/js.cookie.js'></script>
-
 
     <script type="text/javascript" src="js/namespace/namespace.js"></script>
     <script type="text/javascript" src="js/model/model.js"></script>
@@ -143,10 +210,13 @@
 
     <script type="text/javascript" src="js/main.js"></script>
 
+    <!-- Google Materialize JS -->           
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+
+
 
 
 

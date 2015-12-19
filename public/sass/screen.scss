@@ -2,17 +2,43 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
-@import "compass/reset";
 @import "grids";
 @import "compass/css3";
-
+@import "compass/reset";
 @include global-reset; 
+@import "compass/layout";
+@import "compass/utilities/general";
+
+@include sticky-footer(150px);
 
 
 .container {
   @include container; 
 }
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  min-width: 320px; 
+}
+
+header {
+  * {
+    font-family: 'Roboto';
+  }
+  nav {
+    height: 75px; 
+    line-height: 75px; 
+  }
+
+
+}
+
+
+
+
 
 
 
@@ -24,19 +50,76 @@
 
 .login-view {
 
-  form {
-    display: block; 
-    max-width: 450px;
-    margin: 0 auto;   
+  h2 {
+    padding-bottom: 30px; 
+  }
+  .login-wrap {
+    padding-bottom: 20px; 
   }
 
-  .input-field {
-    @include span(12);
-    display: block; 
+  #button-div {
+    margin: 20px auto; 
   }
+
+  #button-wrap {
+    @include span(12); 
+    @include clearfix; 
+    max-width: 400px; 
+    float: none !important;
+    margin: 20px auto; 
+
+    a {
+      @include span(6); 
+      display: inline-block; 
+    }
+  }
+
+  .register {
+    background: transparent !important;
+  }
+
+  #form {
+    @include span(12); 
+    max-width: 400px; 
+    clear: left; 
+  }
+
+  #form-wrap {
+    @include span(12);
+    max-width: 400px; 
+    margin: 20px auto;  
+    float: none; 
+    text-align: center;
+    padding: 30px (gutter() * 6) ;
+  }
+
+  .inner-form-wrap {
+    
+  }
+
+
 
 }
 
+
+
+#upload-task {
+  @include span(12); 
+  max-width: 600px !important; 
+  min-width: 300px; 
+  margin: 0 auto; 
+  float: none !important; 
+}
+
+#task-title-wrap {
+  @include span(12);   
+  min-width: 300px; 
+}
+
+#date-wrap {
+  @include span(6);
+  min-width: 300px;  
+}
 
 /* 
 ==============================
@@ -44,12 +127,18 @@
 ==============================
 */
 
-#task-complete {
+.taskView {
 
-  cursor: hand;
-  cursor: pointer; 
-  text-align: right; 
+  #task-complete {
+    cursor: hand;
+    cursor: pointer; 
+    text-align: right; 
+  }
+
+
 }
+
+
 
 
 

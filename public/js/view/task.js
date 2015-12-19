@@ -7,14 +7,11 @@ App.View.TaskWindow = Backbone.View.extend({
   initialize: function() {
   	this.render();
 
-    $('.datepicker').pickadate({
+      $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
-    $('body .collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
 
     /* Create task collection and fetch */
     app.collection.task = new App.Collection.Task;
@@ -40,9 +37,7 @@ App.View.TaskWindow = Backbone.View.extend({
 
 
    /*=============================================  
-    createTask
-    
-    - Creates new tasks 
+     CREATE NEW TASKS 
   =============================================*/
   createTask: function(event) {
 
@@ -51,7 +46,7 @@ App.View.TaskWindow = Backbone.View.extend({
       Build task object 
     ----------*/    
     var taskUser = Cookies.get('todo');
-  	var taskTitle = $('#task-title').val();
+  	var taskTitle = $('#task-title-wrap textarea').val();
   	var taskDesription = $('#task-description').val();
   	var taskDue = $('#task-due').val(); 
 
@@ -61,96 +56,116 @@ App.View.TaskWindow = Backbone.View.extend({
       description: taskDesription,
       due: taskDue
     });
+
     /*----------  
       - Save individual task model to server
     ----------*/  
-    app.model.task.save()
+    app.model.task.save({}, {wait: true})
       .done(function(response) {
+        console.log(response); 
         console.log("app.model.task: successful save"); 
-      })
-      .fail(function(response) {
-        console.log("app.model.task: failed model save");
-      });
-    /*----------  
-      - Create view for model
-    ----------*/   
-    app.view.task = new App.View.Task({
-      model: app.model.task
-    });
-    /*----------  
-      - Add model to collection 
-    ----------*/    
-    app.collection.task.add(app.model.task); 
- 
-  }
-  /*=====  End createTask ======*/
 
+        /*----------  
+          Only if model is successfully saved to server:
+          - Create view for model; & 
+          - Add to collection 
+        ----------*/         
+        app.view.task = new App.View.Task({
+          model: app.model.task
+        });        
+        app.collection.task.add(app.model.task); 
+      })      
+        /*--------------------*/        
+      .fail(function(response) {
+        alert("error saving task");
+      });
+    /*--------------------*/ 
+  }
+  /*=============*/
 
 }); 
 
 
 App.View.Task = Backbone.View.extend({
 
-	// tagName: 'section',
-	// className: 'openTaskView',
+	tagName: 'section',
+	className: 'taskView',
+	template: Handlebars.compile( $('#task-template').html() ),
 
-	// template: Handlebars.compile( $('#task-template').html() ),
+  initialize: function() {
 
- //  initialize: function() {
+    this.render(); 
 
- //    // this.listenTo(this.model, 'change', this.model.save())
+  },
 
- //    this.model.on('change', this.saveData, this);
- //    // console.log("app.view.task: created"); 
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    /*----------  
+      - Before appending to either open or closed DOM section, check task's completion status 
+    ----------*/
+    if (this.model.toJSON().open === true) {
+      $('#task-complete').html("chat_bubble_outline")
+      $("#open-task-div").append(this.$el);
 
- //    this.render();     
+    }
+    else {      
+      $('#task-complete').html("done");
+      $("#closed-task-div").append(this.$el); 
+    }
 
- //  },
+  },
 
- //  saveData: function() {
- //    console.log('saving');
- //    this.model.save(); 
- //    this.model.get("open");
- //  },
+  events: {    
+    'click #task-header-div': 'toggleDescription',    
+    'click #task-complete' : 'complete'
+  },
 
- //  render: function() {
+  /*=============================================
+    CLICK EVENT:
+    - Expand task description on click             
+  =============================================*/  
+  toggleDescription: function(event) {
+    var target = $( event.target );
+    target.parent('li').find('.collapsible-body').toggle(); 
+  },
+  /*===========*/  
+  /*=============================================
+    CLICK EVENT: 
+    - Toggle completion status (i.e. open/close)
+    - Save to Server
+    - Re-render         
+  =============================================*/
+  complete: function(event) {
+    var self = this; 
 
- //    this.$el.html(this.template(this.model.toJSON()));
+    if (this.model.get("open") === true) {
 
- //    if (this.model.toJSON().status == "open") {
- //      $("#open-task-div").append(this.$el);
- //    }
- //    else {
- //      $("#closed-task-div").append(this.$el); 
- //    }
+      this.model.set("open", false);
+      console.log(this.model.get("open"));
 
- //  },
+      this.model.save({}, {wait:true})
+        .done(function(response) { 
+          self.render();
+         })
+        .fail(function(response) {
+          alert("error saving task");
+          this.model.set("open", true)
+        });      
+    }
+    else  {
+      this.model.set("open", true);
+      console.log(this.model.get("open"));
 
- //  events: {
- //    'click #task-header-div': 'toggleDescription',
- //    'click #task-complete' : 'complete'
- //  },
-
- //  toggleDescription: function(event) {
- //    var target = $( event.target );
- //    target.parent('li').find('.collapsible-body').toggle(); 
- //  },
-
- //  complete: function(event) {
- //    if (this.model.get("open") === false) {
- //      this.model.set("open", true)
- //      $('#task-complete').html("chat_bubble_outline")
- //      console.log(this.model.get("open"));
- //    }
- //    else  {
- //      this.model.set("open", false);
- //      $('#task-complete').html("done");
- //      console.log(this.model.get("open"));
- //    }
-
- //  }
-
+      this.model.save({}, {wait:true})
+        .done(function(response) { 
+          self.render();
+         })
+        .fail(function(response) {
+          alert("error saving task");
+          this.model.set("open", false)
+        });   
+    }
+  }
+  /*===========*/
 })
-
-
 

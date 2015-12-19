@@ -132,7 +132,32 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 13, ../sass/screen.scss */
+/* line 10, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 12, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#root {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -150px;
+}
+/* line 18, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#root #root_footer {
+  height: 150px;
+}
+
+/* line 20, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#footer {
+  clear: both;
+  position: relative;
+  height: 150px;
+}
+
+/* line 15, ../sass/screen.scss */
 .container {
   max-width: 1400px;
   margin-left: auto;
@@ -145,24 +170,117 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   clear: both;
 }
 
+/* line 19, ../sass/screen.scss */
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* line 23, ../sass/screen.scss */
+body {
+  min-width: 320px;
+}
+
+/* line 28, ../sass/screen.scss */
+header * {
+  font-family: 'Roboto';
+}
+/* line 31, ../sass/screen.scss */
+header nav {
+  height: 75px;
+  line-height: 75px;
+}
+
 /* 
 ==============================
    Login
 ==============================
 */
-/* line 27, ../sass/screen.scss */
-.login-view form {
-  display: block;
-  max-width: 450px;
-  margin: 0 auto;
+/* line 53, ../sass/screen.scss */
+.login-view h2 {
+  padding-bottom: 30px;
 }
-/* line 33, ../sass/screen.scss */
-.login-view .input-field {
+/* line 56, ../sass/screen.scss */
+.login-view .login-wrap {
+  padding-bottom: 20px;
+}
+/* line 60, ../sass/screen.scss */
+.login-view #button-div {
+  margin: 20px auto;
+}
+/* line 64, ../sass/screen.scss */
+.login-view #button-wrap {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
-  display: block;
+  overflow: hidden;
+  *zoom: 1;
+  max-width: 400px;
+  float: none !important;
+  margin: 20px auto;
+}
+/* line 71, ../sass/screen.scss */
+.login-view #button-wrap a {
+  width: 48.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  display: inline-block;
+}
+/* line 77, ../sass/screen.scss */
+.login-view .register {
+  background: transparent !important;
+}
+/* line 81, ../sass/screen.scss */
+.login-view #form {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  max-width: 400px;
+  clear: left;
+}
+/* line 87, ../sass/screen.scss */
+.login-view #form-wrap {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  max-width: 400px;
+  margin: 20px auto;
+  float: none;
+  text-align: center;
+  padding: 30px 5%;
+}
+
+/* line 106, ../sass/screen.scss */
+#upload-task {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  max-width: 600px !important;
+  min-width: 300px;
+  margin: 0 auto;
+  float: none !important;
+}
+
+/* line 114, ../sass/screen.scss */
+#task-title-wrap {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  min-width: 300px;
+}
+
+/* line 119, ../sass/screen.scss */
+#date-wrap {
+  width: 48.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  min-width: 300px;
 }
 
 /* 
@@ -170,8 +288,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
    Task
 ==============================
 */
-/* line 47, ../sass/screen.scss */
-#task-complete {
+/* line 132, ../sass/screen.scss */
+.taskView #task-complete {
   cursor: hand;
   cursor: pointer;
   text-align: right;
