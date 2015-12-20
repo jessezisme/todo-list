@@ -70,10 +70,25 @@ app.post('/login', function(req, res) {
 
 app.get('/collection/:id', function(req, res) {
 
-  console.log('get collection/:id request: ' + req.params.id);
-  console.log(req.params.id);
-  res.send(true)
-})
+  console.log('get collection/:id request: ' + req.params.id);  
+  var todoUser = req.params.id;   
+
+  db.search('todo-tasks', 'value.user: ' + ("" + todoUser) )
+  .then(function (result) {
+    console.log('orchestrate search tasks: ' + result.body.results ); 
+    
+    var taskCollection = result.body.results; 
+    var finalTasks = []; 
+
+    for (var i = 0; i < taskCollection.length; i++) {
+      finalTasks.push(taskCollection[i].value); 
+    }
+
+    res.send(finalTasks); 
+
+  });  
+
+}); 
 
 
 /*=============================================
@@ -87,6 +102,7 @@ app.post('/task', function(req, res) {
   var key = shortid.generate(); 
   req.body.id = key; 
   console.log("new task body is: " + req.body);
+  console.log('new key is: ' + req.body.id)
 
   /*----------  
     - Upload task to server

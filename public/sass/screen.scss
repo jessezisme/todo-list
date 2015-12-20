@@ -15,15 +15,12 @@
 .container {
   @include container; 
 }
-
 * {
   font-family: 'Roboto', sans-serif;
 }
-
 body {
   min-width: 320px; 
 }
-
 header {
   * {
     font-family: 'Roboto';
@@ -36,11 +33,6 @@ header {
 a {
   cursor: hand; 
 }
-
-
-
-
-
 
 
 /* 
@@ -98,8 +90,6 @@ a {
     
   }
 
-
-
 }
 
 /* 
@@ -111,7 +101,6 @@ a {
 /*----------  
   Create task section
 ----------*/
-
 .taskWindowView {
   
   textarea, input {
@@ -165,13 +154,14 @@ a {
 /*----------  
   Open/Closed Task Section
 ----------*/
-  #open-task-div, #closed-task-div {
-    @include span(12); 
-    clear: left; 
+  
+  #open-task-header, #closed-task-header {
+    margin-top: 75px; 
   }
 
-  #open-task-div {
-    margin-top: 150px; 
+  #open-task-header, #open-task-div, #closed-task-header, #closed-task-div {
+    @include span(12); 
+    clear: left; 
   }
 
 }
@@ -191,6 +181,12 @@ a {
     text-align: right; 
   }
 
+  #task-complete {
+    font-size: 4rem; 
+    height: 100px; 
+    width: 100px; 
+    display: inline-block; 
+  }
 
 }
 

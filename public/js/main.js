@@ -11,9 +11,6 @@ $(document).ready(function() {
 		trigger: true
 	});
 
-
 	$(".button-collapse").sideNav();
-
-
 
 })

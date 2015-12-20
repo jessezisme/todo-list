@@ -10,19 +10,24 @@ App.View.TaskWindow = Backbone.View.extend({
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-
-    /* Create task collection and fetch */
+    });        
+    /* -----------
+      Create task collection and fetch 
+    ------------- */
     app.collection.task = new App.Collection.Task;
     app.collection.task.fetch({
-      data: 'test',
-      // success: function(model, response, options) {
-      //   console.log(response);
-      // },
-      // failure: function(model, response, options) {
-      //   console.log(response);
-      // }
-    })    
+      success: function(resModel, response, options) {
+        console.log('app.collection.task.fetch: SUCCESS');
+        app.collection.task.forEach(function(taskModel) {
+          app.view.task = new App.View.Task({
+            model: taskModel
+          })
+        })
+      },
+      failure: function(resModel, response, options) {
+        console.log(response)
+      }
+    });
 
   },
 
@@ -33,14 +38,24 @@ App.View.TaskWindow = Backbone.View.extend({
 
   events: {    
     'click #star-wrap' : 'toggleStar',
-    'click #submit-button' : 'createTask'
+    'click #submit-button' : 'createTask',
+    'click label' : 'toggleActive'
   },
-  
+  /*----------  
+    Click Event:
+      - Occassionally, input fields require double-clicks before typing into input field is allowed;
+      - This fixes the issue
+  ----------*/  
+  toggleActive: function(event) {
+    $(event.target).parent('div').children('label').addClass("active");
+    $(event.target).parent('div').children('textarea').focus();
+  },  
   /*----------  
     Click Event:
       - Toggle starring of tasks; changes star color
   ----------*/  
   toggleStar: function() {
+    event.preventDefault(); 
     $('#star-wrap i').toggleClass('star-true');  
   },
 
@@ -48,7 +63,6 @@ App.View.TaskWindow = Backbone.View.extend({
      CREATE NEW TASKS 
   =============================================*/
   createTask: function(event) {
-
     event.preventDefault(); 
     /*----------  
       Build task object 
@@ -59,7 +73,7 @@ App.View.TaskWindow = Backbone.View.extend({
   	var taskDue = $('#task-due').val(); 
     var taskStar;
       
-      if (  $('#star-wrap i').toggleClass('star-true')  ) {
+      if (  $('#star-wrap i').hasClass('star-true')  ) {
         taskStar = true; 
       } 
     /*----------  
@@ -72,7 +86,6 @@ App.View.TaskWindow = Backbone.View.extend({
       due: taskDue,
       star: taskStar
     });
-
     /*----------  
       - Save individual task model to server
     ----------*/  
@@ -84,11 +97,12 @@ App.View.TaskWindow = Backbone.View.extend({
           Only if model is successfully saved to server:
           - Create view for model; & 
           - Add to collection 
-        ----------*/         
+        ----------*/ 
+        app.collection.task.add(app.model.task);         
         app.view.task = new App.View.Task({
           model: app.model.task
         });        
-        app.collection.task.add(app.model.task); 
+
         /*----------  
           Clear form 
         ----------*/
@@ -119,25 +133,29 @@ App.View.Task = Backbone.View.extend({
 	template: Handlebars.compile( $('#task-template').html() ),
 
   initialize: function() {
-
     this.render(); 
-
   },
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+    console.log('task rendering');
+    console.log(this.model.get('open'));
+
+    this.$el.html(this.template(this.model.toJSON()));    
     /*----------  
       - Before appending to either open or closed DOM section, check task's completion status 
-    ----------*/
+    ----------*/  
     if (this.model.toJSON().open === true) {
-      $('#task-complete').html("chat_bubble_outline")
-      $("#open-task-div").append(this.$el);
+      $("#open-task-div").append(this.$el);  
+    }
+    else {
+      $("#closed-task-div").append(this.$el);       
+      // $('#task-complete').addClass("icon").addClass("ion-android-checkbox-outline");
+    }
 
-    }
-    else {      
-      $('#task-complete').html("done");
-      $("#closed-task-div").append(this.$el); 
-    }
+      // $("#task-complete").removeClass(); 
+
+      // $('#task-complete').addClass("icon").addClass("ion-android-checkbox-outline-blank");
+
 
   },
 
@@ -165,33 +183,28 @@ App.View.Task = Backbone.View.extend({
     var self = this; 
 
     if (this.model.get("open") === true) {
-
-      this.model.set("open", false);
-      console.log(this.model.get("open"));
-
-      this.model.save({}, {wait:true})
-        .done(function(response) { 
-          self.render();
-         })
-        .fail(function(response) {
-          alert("error saving task");
-          this.model.set("open", true)
-        });      
+      self.model.set("open", false);
     }
     else  {
-      this.model.set("open", true);
-      console.log(this.model.get("open"));
-
-      this.model.save({}, {wait:true})
-        .done(function(response) { 
-          self.render();
-         })
-        .fail(function(response) {
-          alert("error saving task");
-          this.model.set("open", false)
-        });   
+      self.model.set("open", true);
     }
+
+    // self.remove();
+
+    // app.view.task = new App.View.Task({
+    //   model: self.model
+    // });
+
+    this.render(); 
+
+    self.model.save()
+      .done(function(response) {
+      })
+      .fail(function(response) {
+      })    
+
   }
+
   /*===========*/
 })
 

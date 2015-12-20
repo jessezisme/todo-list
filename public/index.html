@@ -142,14 +142,13 @@
       </form>
     </div>
 
-
+    <h3 id="open-task-header"> Open tasks </h3> 
     <div id="open-task-div"> 
-      <h3> Open tasks </h3> 
     </div> 
 
+    <h3 id='closed-task-header'> Closed tasks </h3> 
     <div id="closed-task-div"> 
-      <h3> Closed tasks </h3> 
-     </div> 
+    </div> 
 
  
   </div> 
@@ -167,7 +166,11 @@
     <ul class="collapsible" data-collapsible="expandable">     
 
       <li>
-        <i id="task-complete" class="large material-icons">chat_bubble_outline</i>
+        {{#if open}}
+          <i id="task-complete" class="icon ion-android-checkbox-outline-blank"></i>
+        {{else}}
+           <i id="task-complete" class="icon ion-android-checkbox-outline"></i>
+        {{/if}}
         <div id="task-header-div" class="collapsible-header"> 
           {{ title }} 
           {{ due}}
