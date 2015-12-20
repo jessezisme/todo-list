@@ -32,8 +32,9 @@ header {
     height: 75px; 
     line-height: 75px; 
   }
-
-
+}
+a {
+  cursor: hand; 
 }
 
 
@@ -101,29 +102,84 @@ header {
 
 }
 
+/* 
+==============================
+   Task Main Window
+==============================
+*/
+
+/*----------  
+  Create task section
+----------*/
+
+.taskWindowView {
+  
+  textarea, input {
+    padding-bottom: 0 !important;
+  }
+
+  #upload-task {
+    @include span(12); 
+    max-width: 600px !important; 
+    margin: 0 auto; 
+    float: none !important; 
+  }
+
+  #task-title-wrap {
+    @include span(12);  
+  }
+
+  #description {
+    @include span(12); 
+    padding-left: 50px; 
+  }
+
+  #date-wrap {
+    @include span(10);
+  }
+
+  #star-wrap{
+    @include span(2); 
+    text-align: center; 
+
+    button {
+      border: none; 
+      background: transparent !important;
+    }
+    i {
+      font-size: 3.5rem; 
+      color: rgba(0, 0, 0, 0.3); 
+    }
+    .star-true {
+      color: #1de9b6; 
+    }
+  }
+
+  #button-wrap {
+    @include span(12); 
+    text-align: center;
+    padding-top: 25px;  
+  }
 
 
-#upload-task {
-  @include span(12); 
-  max-width: 600px !important; 
-  min-width: 300px; 
-  margin: 0 auto; 
-  float: none !important; 
+/*----------  
+  Open/Closed Task Section
+----------*/
+  #open-task-div, #closed-task-div {
+    @include span(12); 
+    clear: left; 
+  }
+
+  #open-task-div {
+    margin-top: 150px; 
+  }
+
 }
 
-#task-title-wrap {
-  @include span(12);   
-  min-width: 300px; 
-}
-
-#date-wrap {
-  @include span(6);
-  min-width: 300px;  
-}
 
 /* 
 ==============================
-   Task
+   Individual Task 
 ==============================
 */
 

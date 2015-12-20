@@ -2,8 +2,9 @@ App.Collection.Task = Backbone.Collection.extend({
 
 	model: App.Model.Task,
 
-	url: '/collection',
-
+	url: function() {
+		return ( '/collection/' + Cookies.get('todo')	)
+	},
 	initialize: function() {
 		console.log("app.collection.task: initalizing")
 	}

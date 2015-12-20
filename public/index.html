@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     
     <!-- Style Link-->
-      <!-- Google Materialize-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">       
-
-
     <link rel="stylesheet" type="text/css" href="/css/screen.css">
     <link rel="stylesheet" type="text/css" href="../../bower_components/Ionicons/css/ionicons.min.css">
 
+    <!-- Google Materialize-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">   
 
 </head>
 
-<body>
 
+<body>  
+
+  <!-- Header -->
   <header> 
     <nav class="blue-grey">
       <div class="nav-wrapper">
@@ -29,11 +29,7 @@
   </header> 
 
 
-
-
-
-
-
+  <!-- Main -->
   <main> 
     <div class="container">
         <div id="body-wrap">
@@ -42,7 +38,7 @@
   </main> 
 
 
-
+  <!-- Footer -->
     <div id="root">
     <div id="root_footer">
     </div>
@@ -52,12 +48,7 @@
         Footer content goes here.
       </div> 
     </div>
-
-
-
-
-
-
+ 
 
   <!-- 
   ====================================
@@ -112,9 +103,7 @@
   <!--  Task page and New Task Uploader-->
   <script type="template-x-handlebars" id="task-window-template">
 
-
   <div class="container">
-
 
     <div id="upload-task">
       <form>
@@ -127,41 +116,43 @@
           </div>
         </div>
 
+        <div id="description">
+          <div class="input-field">
+            <textarea id="task-description" id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Enter Description</label>
+          </div>
+        </div>
+
         <div id="date-wrap" class="input-field">
           <i class="material-icons prefix">schedule</i>
           <input type="date" id="task-due" class="datepicker">
           <label for="task-due"> Set Due-date </label>
         </div> 
 
-        <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons large">stars</i></a>      
+        <div id="star-wrap">        
+          <button> <i class="icon ion-ios-star"></i> </button> 
+        </div> 
 
-        <div>
-          <div class="input-field">
-            <textarea id="task-description" id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Textarea</label>
-          </div>
-        </div>
-
-        <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
-        </button>  
+        <div id="button-wrap">        
+          <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button> 
+        </div> 
 
       </form>
     </div>
 
-    <div id="open-task-div"> Open tasks
+
+    <div id="open-task-div"> 
+      <h3> Open tasks </h3> 
     </div> 
 
-    <div id="closed-task-div"> Closed tasks
+    <div id="closed-task-div"> 
+      <h3> Closed tasks </h3> 
      </div> 
 
-
+ 
   </div> 
-
-
-
-
-
   </script> 
 
 

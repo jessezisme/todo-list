@@ -61,11 +61,20 @@ app.post('/login', function(req, res) {
 });  
 
 
-app.get('/collection', function(req, res) {
+// app.get('/collection', function(req, res) {
 
-  console.log('get collection request');
+//   console.log('get collection request');
+//   console.log(req.body);
+//   res.send(true)
+// })
+
+app.get('/collection/:id', function(req, res) {
+
+  console.log('get collection/:id request: ' + req.params.id);
+  console.log(req.params.id);
   res.send(true)
 })
+
 
 /*=============================================
 =           Upload New Task          =

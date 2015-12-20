@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 5, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,50 +24,50 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
-/* line 5, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -89,55 +89,55 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
-/* line 10, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+/* line 10, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
 html, body {
   height: 100%;
 }
 
-/* line 12, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+/* line 12, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
 #root {
   clear: both;
   min-height: 100%;
@@ -145,12 +145,12 @@ html, body {
   height: 100%;
   margin-bottom: -150px;
 }
-/* line 18, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+/* line 18, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
 #root #root_footer {
   height: 150px;
 }
 
-/* line 20, ../../../../../../var/lib/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+/* line 20, ../../../../../../var/lib/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
 #footer {
   clear: both;
   position: relative;
@@ -163,7 +163,7 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 12, ../../../../../../var/lib/gems/1.9.1/gems/susy-2.2.6/sass/susy/output/support/_clearfix.scss */
+/* line 12, ../../../../../../var/lib/gems/2.1.0/gems/susy-2.2.9/sass/susy/output/support/_clearfix.scss */
 .container:after {
   content: " ";
   display: block;
@@ -190,24 +190,29 @@ header nav {
   line-height: 75px;
 }
 
+/* line 36, ../sass/screen.scss */
+a {
+  cursor: hand;
+}
+
 /* 
 ==============================
    Login
 ==============================
 */
-/* line 53, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 .login-view h2 {
   padding-bottom: 30px;
 }
-/* line 56, ../sass/screen.scss */
+/* line 57, ../sass/screen.scss */
 .login-view .login-wrap {
   padding-bottom: 20px;
 }
-/* line 60, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 .login-view #button-div {
   margin: 20px auto;
 }
-/* line 64, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 .login-view #button-wrap {
   width: 98.33333%;
   float: left;
@@ -219,7 +224,7 @@ header nav {
   float: none !important;
   margin: 20px auto;
 }
-/* line 71, ../sass/screen.scss */
+/* line 72, ../sass/screen.scss */
 .login-view #button-wrap a {
   width: 48.33333%;
   float: left;
@@ -227,11 +232,11 @@ header nav {
   margin-right: 0.83333%;
   display: inline-block;
 }
-/* line 77, ../sass/screen.scss */
+/* line 78, ../sass/screen.scss */
 .login-view .register {
   background: transparent !important;
 }
-/* line 81, ../sass/screen.scss */
+/* line 82, ../sass/screen.scss */
 .login-view #form {
   width: 98.33333%;
   float: left;
@@ -240,7 +245,7 @@ header nav {
   max-width: 400px;
   clear: left;
 }
-/* line 87, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 .login-view #form-wrap {
   width: 98.33333%;
   float: left;
@@ -253,42 +258,106 @@ header nav {
   padding: 30px 5%;
 }
 
-/* line 106, ../sass/screen.scss */
-#upload-task {
+/* 
+==============================
+   Task Main Window
+==============================
+*/
+/*----------  
+  Create task section
+----------*/
+/* line 115, ../sass/screen.scss */
+.taskWindowView {
+  /*----------  
+    Open/Closed Task Section
+  ----------*/
+}
+/* line 117, ../sass/screen.scss */
+.taskWindowView textarea, .taskWindowView input {
+  padding-bottom: 0 !important;
+}
+/* line 121, ../sass/screen.scss */
+.taskWindowView #upload-task {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
   max-width: 600px !important;
-  min-width: 300px;
   margin: 0 auto;
   float: none !important;
 }
-
-/* line 114, ../sass/screen.scss */
-#task-title-wrap {
+/* line 128, ../sass/screen.scss */
+.taskWindowView #task-title-wrap {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
-  min-width: 300px;
 }
-
-/* line 119, ../sass/screen.scss */
-#date-wrap {
-  width: 48.33333%;
+/* line 132, ../sass/screen.scss */
+.taskWindowView #description {
+  width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
-  min-width: 300px;
+  padding-left: 50px;
+}
+/* line 137, ../sass/screen.scss */
+.taskWindowView #date-wrap {
+  width: 81.66667%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+}
+/* line 141, ../sass/screen.scss */
+.taskWindowView #star-wrap {
+  width: 15%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  text-align: center;
+}
+/* line 145, ../sass/screen.scss */
+.taskWindowView #star-wrap button {
+  border: none;
+  background: transparent !important;
+}
+/* line 149, ../sass/screen.scss */
+.taskWindowView #star-wrap i {
+  font-size: 3.5rem;
+  color: rgba(0, 0, 0, 0.3);
+}
+/* line 153, ../sass/screen.scss */
+.taskWindowView #star-wrap .star-true {
+  color: #1de9b6;
+}
+/* line 158, ../sass/screen.scss */
+.taskWindowView #button-wrap {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  text-align: center;
+  padding-top: 25px;
+}
+/* line 168, ../sass/screen.scss */
+.taskWindowView #open-task-div, .taskWindowView #closed-task-div {
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  clear: left;
+}
+/* line 173, ../sass/screen.scss */
+.taskWindowView #open-task-div {
+  margin-top: 150px;
 }
 
 /* 
 ==============================
-   Task
+   Individual Task 
 ==============================
 */
-/* line 132, ../sass/screen.scss */
+/* line 188, ../sass/screen.scss */
 .taskView #task-complete {
   cursor: hand;
   cursor: pointer;

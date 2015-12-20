@@ -7,21 +7,21 @@ App.View.TaskWindow = Backbone.View.extend({
   initialize: function() {
   	this.render();
 
-      $('.datepicker').pickadate({
+    $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
-
     /* Create task collection and fetch */
     app.collection.task = new App.Collection.Task;
     app.collection.task.fetch({
-      success: function(model, response, options) {
-        console.log(response);
-      },
-      failure: function(model, response, options) {
-        console.log(response);
-      }
+      data: 'test',
+      // success: function(model, response, options) {
+      //   console.log(response);
+      // },
+      // failure: function(model, response, options) {
+      //   console.log(response);
+      // }
     })    
 
   },
@@ -31,12 +31,20 @@ App.View.TaskWindow = Backbone.View.extend({
    	$('#body-wrap').append(this.$el);  
   },
 
-  events: {
+  events: {    
+    'click #star-wrap' : 'toggleStar',
     'click #submit-button' : 'createTask'
   },
+  
+  /*----------  
+    Click Event:
+      - Toggle starring of tasks; changes star color
+  ----------*/  
+  toggleStar: function() {
+    $('#star-wrap i').toggleClass('star-true');  
+  },
 
-
-   /*=============================================  
+  /*=============================================  
      CREATE NEW TASKS 
   =============================================*/
   createTask: function(event) {
@@ -49,12 +57,20 @@ App.View.TaskWindow = Backbone.View.extend({
   	var taskTitle = $('#task-title-wrap textarea').val();
   	var taskDesription = $('#task-description').val();
   	var taskDue = $('#task-due').val(); 
-
+    var taskStar;
+      
+      if (  $('#star-wrap i').toggleClass('star-true')  ) {
+        taskStar = true; 
+      } 
+    /*----------  
+      - Create task model
+    ----------*/  
     app.model.task = new App.Model.Task({
       user: taskUser,
       title: taskTitle,
       description: taskDesription,
-      due: taskDue
+      due: taskDue,
+      star: taskStar
     });
 
     /*----------  
@@ -64,7 +80,6 @@ App.View.TaskWindow = Backbone.View.extend({
       .done(function(response) {
         console.log(response); 
         console.log("app.model.task: successful save"); 
-
         /*----------  
           Only if model is successfully saved to server:
           - Create view for model; & 
@@ -74,6 +89,16 @@ App.View.TaskWindow = Backbone.View.extend({
           model: app.model.task
         });        
         app.collection.task.add(app.model.task); 
+        /*----------  
+          Clear form 
+        ----------*/
+        var taskTitle = $('#task-title-wrap textarea').val("");
+        var taskDesription = $('#task-description').val("");
+        var taskDue = $('#task-due').val(""); 
+        if (  $('#star-wrap i').hasClass('star-true')  ) {
+          $('#star-wrap i').removeClass('star-true');
+        }     
+        /*--------------------*/   
       })      
         /*--------------------*/        
       .fail(function(response) {
@@ -84,6 +109,7 @@ App.View.TaskWindow = Backbone.View.extend({
   /*=============*/
 
 }); 
+
 
 
 App.View.Task = Backbone.View.extend({
