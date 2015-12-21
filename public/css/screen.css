@@ -355,15 +355,18 @@ button {
   max-width: 800px;
   margin: 20px auto 150px auto;
   clear: left;
+}
+/* line 172, ../sass/screen.scss */
+.taskWindowView #closed-task-div {
   display: none;
 }
-/* line 173, ../sass/screen.scss */
+/* line 176, ../sass/screen.scss */
 .taskWindowView #open-task-header, .taskWindowView #closed-task-header {
   display: block;
   max-width: 800px;
   margin: 50px auto 20px auto;
 }
-/* line 179, ../sass/screen.scss */
+/* line 182, ../sass/screen.scss */
 .taskWindowView #closed-task-header {
   -moz-transition: all 1s;
   -o-transition: all 1s;
@@ -373,19 +376,19 @@ button {
   color: white;
   padding: 20px;
 }
-/* line 186, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 .taskWindowView #closed-task-header:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
   cursor: pointer;
 }
-/* line 192, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .taskWindowView #button-header {
   width: 100%;
   display: block;
   margin: 0 auto;
 }
-/* line 199, ../sass/screen.scss */
+/* line 200, ../sass/screen.scss */
 .taskWindowView #closed-number {
   padding-left: 30px;
 }
@@ -433,16 +436,26 @@ button {
   margin-right: 0.83333%;
   display: inline-block;
 }
-/* line 243, ../sass/screen.scss */
-.taskView .date {
+/* line 244, ../sass/screen.scss */
+.taskView .date-div {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
-  display: inline-block;
-  color: #00bfa5;
 }
-/* line 248, ../sass/screen.scss */
+/* line 247, ../sass/screen.scss */
+.taskView .date {
+  display: inline;
+  color: #00bfa5;
+  float: left;
+}
+/* line 252, ../sass/screen.scss */
+.taskView .until-due {
+  display: inline;
+  float: right;
+  color: #00695c;
+}
+/* line 260, ../sass/screen.scss */
 .taskView #extend-wrap {
   width: 100%;
   float: left;
@@ -450,23 +463,23 @@ button {
   margin-right: 0.83333%;
   text-align: center;
 }
-/* line 252, ../sass/screen.scss */
+/* line 264, ../sass/screen.scss */
 .taskView #extend-wrap #extend {
   display: block;
   width: 100%;
   height: 100%;
   font-size: 2rem;
 }
-/* line 259, ../sass/screen.scss */
+/* line 271, ../sass/screen.scss */
 .taskView #task-body-div {
   padding: 20px 30px;
 }
-/* line 262, ../sass/screen.scss */
+/* line 274, ../sass/screen.scss */
 .taskView #task-header-div {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 265, ../sass/screen.scss */
+/* line 277, ../sass/screen.scss */
 .taskView .collapsible-header {
   padding: 15px 10px !important;
 }

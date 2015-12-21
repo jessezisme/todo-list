@@ -119,8 +119,6 @@
           </div>
         </div>
 
-
-
         <div id="description">
           <div class="input-field">
             <textarea id="task-description" id="textarea1" class="materialize-textarea"></textarea>
@@ -160,13 +158,8 @@
 
 
   </div> 
-
- 
  
   </script> 
-
-
-
 
 
 
@@ -186,7 +179,14 @@
           {{/if}}
       
             <p class="title"> {{ title }} </p> 
-            <p class="date">  {{ due }} </p> 
+            
+            <div class="date-div">
+              <p class="date">  {{ due }} ...  </p> 
+              <p class="until-due"> ( {{ untilDue }} ) </p> 
+            </div> 
+
+
+          
         </div>
 
         <div id="task-body-div">
@@ -198,7 +198,6 @@
             <i id="extend" class="icon ion-arrow-down-b "> </i> 
           </div> 
         {{/if}}
-
 
       </li>
 
@@ -215,6 +214,7 @@
     <script type='text/javascript' src='bower_components/backbone/backbone.js'></script>
     <script type='text/javascript' src='bower_components/handlebars/handlebars.js'></script>
     <script type='text/javascript' src='bower_components/js-cookie/src/js.cookie.js'></script>
+    <script type='text/javascript' src='bower_components/moment/moment.js'></script>
 
     <script type="text/javascript" src="js/namespace/namespace.js"></script>
     <script type="text/javascript" src="js/model/model.js"></script>
@@ -228,13 +228,6 @@
 
     <!-- Google Materialize JS -->           
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-
-
-
-
-
-
-
 
 
   </body>

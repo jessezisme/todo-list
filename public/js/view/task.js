@@ -110,12 +110,72 @@ App.View.TaskWindow = Backbone.View.extend({
     var taskUser = Cookies.get('todo');
   	var taskTitle = $('#task-title-wrap textarea').val();
   	var taskDesription = $('#task-description').val();
-  	var taskDue = $('#task-due').val(); 
+    
     var taskStar;
       
       if (  $('#star-wrap i').hasClass('star-true')  ) {
         taskStar = true; 
       } 
+ 
+
+
+    var taskDue = $('#task-due').val(); 
+    taskDue = taskDue.split(" ");
+
+    var day = parseInt(taskDue[0]); 
+
+    // if (day < 10) {
+    //   day = day.toString()
+    //   day = day.split("");
+    //   day.splice(0,0,"0");
+    //   day = day.join("");
+    // }
+
+    console.log(day); 
+
+    var month = taskDue[1].slice(0, -1); 
+    var year = taskDue[2]; 
+    switch (month) {
+      case "January":
+        month = "1";
+        break;
+      case "February":
+        month = "2";
+        break;
+      case "March":
+        month = "3";
+        break;
+      case "April":
+        month = "4";
+        break;
+      case "May":
+        month = "5";
+        break;
+      case "June":
+        month = "6";
+        break;
+      case "July":
+        month = "7";
+        break;
+      case "August":
+        month = "8";
+        break;
+      case "September":
+        month = "9";
+        break;
+      case "October":
+        month = "10";
+        break;
+      case "November":
+        month = "11";
+        break;
+      case "December":
+        month = "12";
+        break;
+    }
+
+    taskDue = year + "-" + month + "-" + day;
+    
     /*----------  
       - Create task model
     ----------*/  
@@ -177,17 +237,41 @@ App.View.Task = Backbone.View.extend({
   },
 
   render: function() {
+    var self = this; 
     console.log('task rendering');
-    console.log(this.model.get('open'));
+
+    var currentYear = moment().get('year').toString();
+    var currentMonth = (moment().get('month')) + 1;
+    currentMonth = currentMonth.toString(); 
+    var currentDay = moment().get('date');
+    var currentDate = moment(currentYear + "-" + currentMonth + "-" + currentDay);
+    var dueDate = this.model.get('due');
+
+    var timeUntilDue = currentDate.to(dueDate); 
+    this.model.set('untilDue', timeUntilDue )
+
+
+
+
+
+
+
+
+
+
+
+
 
     this.$el.html(this.template(this.model.toJSON()));    
     /*----------  
       - Before appending to either open or closed DOM section, check task's completion status 
     ----------*/  
     if (this.model.toJSON().open === true) {
+      console.log("this")
       $("#open-task-div").append(this.$el);  
     }
     else {
+      console.log("that")
       $("#closed-task-div").append(this.$el);       
     }
   },

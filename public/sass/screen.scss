@@ -167,6 +167,9 @@ button {
     max-width: 800px; 
     margin: 20px auto 150px auto;     
     clear: left; 
+  }
+
+  #closed-task-div {    
     display: none; 
   }
 
@@ -188,16 +191,13 @@ button {
     cursor: pointer; 
   }
 
-
   #button-header {
     width: 100%;
     display: block;
     margin: 0 auto; 
-
   }
 
   #closed-number {
-
     padding-left: 30px; 
   } 
 
@@ -240,11 +240,23 @@ button {
     display: inline-block;
 
   }
-  .date {
+
+  .date-div {
     @include span(12); 
-    display: inline-block; 
-    color: #00bfa5; 
   }
+  .date {
+    display: inline;
+    color: #00bfa5; 
+    float: left;
+  }
+  .until-due {
+    display: inline; 
+    float: right; 
+    color: #00695c; 
+  }
+
+
+
   #extend-wrap {
     @include span(100%);
     text-align: center; 
@@ -265,6 +277,8 @@ button {
   .collapsible-header {
     padding: 15px 10px !important;
   }
+
+
 
 }
 
