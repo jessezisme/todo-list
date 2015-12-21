@@ -14,7 +14,10 @@
 
 .container {
   @include container; 
+  padding-left: 2.5%;
+  padding-right: 2.5%;  
 }
+
 * {
   font-family: 'Roboto', sans-serif;
 }
@@ -33,7 +36,10 @@ header {
 a {
   cursor: hand; 
 }
-
+button {
+  background: transparent;
+  border: none; 
+}
 
 /* 
 ==============================
@@ -102,13 +108,16 @@ a {
   Create task section
 ----------*/
 .taskWindowView {
-  
+
+ 
   textarea, input {
     padding-bottom: 0 !important;
   }
 
   #upload-task {
     @include span(12); 
+    @include clearfix; 
+    height: auto; 
     max-width: 600px !important; 
     margin: 0 auto; 
     float: none !important; 
@@ -154,15 +163,43 @@ a {
 /*----------  
   Open/Closed Task Section
 ----------*/
-  
-  #open-task-header, #closed-task-header {
-    margin-top: 75px; 
+  #open-task-div, #closed-task-div {
+    max-width: 800px; 
+    margin: 20px auto 150px auto;     
+    clear: left; 
+    display: none; 
   }
 
-  #open-task-header, #open-task-div, #closed-task-header, #closed-task-div {
-    @include span(12); 
-    clear: left; 
+  #open-task-header, #closed-task-header {
+    display: block; 
+    max-width: 800px; 
+    margin: 50px auto 20px auto; 
   }
+
+  #closed-task-header {
+    @include transition(all 1s);
+    background: black; 
+    color: white; 
+    padding: 20px; 
+  }
+
+  #closed-task-header:hover {
+    @include opacity(.7); 
+    cursor: pointer; 
+  }
+
+
+  #button-header {
+    width: 100%;
+    display: block;
+    margin: 0 auto; 
+
+  }
+
+  #closed-number {
+
+    padding-left: 30px; 
+  } 
 
 }
 
@@ -172,20 +209,61 @@ a {
    Individual Task 
 ==============================
 */
-
 .taskView {
 
+  li {
+    border: none !important; 
+  }
+  ul {
+    @include clearfix(); 
+  }
+  #task-body-div {
+    display: none; 
+  }
+  .clearfix {
+    clear: both;
+    width: 100%;
+  }
   #task-complete {
     cursor: hand;
     cursor: pointer; 
-    text-align: right; 
+    text-align: center; 
+  }
+  #task-complete {
+    display: inline-block; 
+    font-size: 3rem; 
+    padding-right : 10px;
   }
 
-  #task-complete {
-    font-size: 4rem; 
-    height: 100px; 
-    width: 100px; 
+  .title {
+    @include span(10); 
+    display: inline-block;
+
+  }
+  .date {
+    @include span(12); 
     display: inline-block; 
+    color: #00bfa5; 
+  }
+  #extend-wrap {
+    @include span(100%);
+    text-align: center; 
+
+    #extend {
+      display: block;
+      width: 100%;
+      height: 100%; 
+      font-size: 2rem; 
+    }
+  }
+  #task-body-div {
+    padding: 20px 30px; 
+  }
+  #task-header-div {
+    @include clearfix(); 
+  }
+  .collapsible-header {
+    padding: 15px 10px !important;
   }
 
 }

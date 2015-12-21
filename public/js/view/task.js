@@ -12,24 +12,59 @@ App.View.TaskWindow = Backbone.View.extend({
       selectYears: 15 // Creates a dropdown of 15 years to control year
     });        
     /* -----------
-      Create task collection and fetch 
+      - Create task collection and fetch;
+      - On successful fetch:
+          - Create VIEW for each MODEL
+          - Cycle through to determine number of closed tasks; used to populate number in "recently completed
+            tasks" header/button 
     ------------- */
     app.collection.task = new App.Collection.Task;
+
     app.collection.task.fetch({
       success: function(resModel, response, options) {
         console.log('app.collection.task.fetch: SUCCESS');
-        app.collection.task.forEach(function(taskModel) {
+        
+        app.collection.task.forEach(function(taskModel) {          
           app.view.task = new App.View.Task({
             model: taskModel
+          });
+        });
+        /*----------  
+          Determine number of closed tasks for button/header number on INITIALIZE
+        ----------*/
+        (function() {
+          var openList = app.collection.task.pluck("open");
+          var counter = 0; 
+          openList.forEach(function(openProp) {
+            if (openProp === false) {
+              counter += 1; 
+            }
           })
-        })
+          $('#closed-task-header').html("Recently Completed Tasks (" + counter + ")"); 
+        })();
+
       },
+
       failure: function(resModel, response, options) {
         console.log(response)
       }
     });
 
-  },
+    /*----------  
+      Determine number of closed tasks for button/header number on CHANGE
+    ----------*/
+    app.collection.task.on("change:open", function() {
+      var openList = app.collection.task.pluck("open");
+      var counter = 0; 
+      openList.forEach(function(openProp) {
+        if (openProp === false) {
+          counter += 1; 
+        }
+      })
+      $('#closed-task-header').html("Recently Completed Tasks (" + counter + ")"); 
+    }); 
+  
+ },
 
   render: function() {
    	this.$el.html(this.template({}));
@@ -39,7 +74,12 @@ App.View.TaskWindow = Backbone.View.extend({
   events: {    
     'click #star-wrap' : 'toggleStar',
     'click #submit-button' : 'createTask',
-    'click label' : 'toggleActive'
+    'click label' : 'toggleActive',
+    'click #closed-task-header' : 'toggleClosedTask'
+  },
+
+  toggleClosedTask: function(event) {
+    $('#closed-task-div').toggle(); 
   },
   /*----------  
     Click Event:
@@ -120,7 +160,7 @@ App.View.TaskWindow = Backbone.View.extend({
       });
     /*--------------------*/ 
   }
-  /*=============*/
+  /*=============*/ 
 
 }); 
 
@@ -149,18 +189,11 @@ App.View.Task = Backbone.View.extend({
     }
     else {
       $("#closed-task-div").append(this.$el);       
-      // $('#task-complete').addClass("icon").addClass("ion-android-checkbox-outline");
     }
-
-      // $("#task-complete").removeClass(); 
-
-      // $('#task-complete').addClass("icon").addClass("ion-android-checkbox-outline-blank");
-
-
   },
 
   events: {    
-    'click #task-header-div': 'toggleDescription',    
+    'click #extend': 'toggleDescription',    
     'click #task-complete' : 'complete'
   },
 
@@ -170,7 +203,18 @@ App.View.Task = Backbone.View.extend({
   =============================================*/  
   toggleDescription: function(event) {
     var target = $( event.target );
-    target.parent('li').find('.collapsible-body').toggle(); 
+    console.log('click')
+    target.parents('li').find('#task-body-div').toggle(250, function() {
+      
+      if (target.hasClass("ion-arrow-down-b")) {
+        target.removeClass();
+        target.addClass("icon ion-arrow-up-b")
+      }
+      else {
+        target.removeClass();
+        target.addClass("icon ion-arrow-down-b")
+      }
+    }); 
   },
   /*===========*/  
   /*=============================================
@@ -189,12 +233,6 @@ App.View.Task = Backbone.View.extend({
       self.model.set("open", true);
     }
 
-    // self.remove();
-
-    // app.view.task = new App.View.Task({
-    //   model: self.model
-    // });
-
     this.render(); 
 
     self.model.save()
@@ -204,7 +242,6 @@ App.View.Task = Backbone.View.extend({
       })    
 
   }
-
   /*===========*/
 })
 

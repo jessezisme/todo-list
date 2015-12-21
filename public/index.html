@@ -5,14 +5,17 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    
+
     <!-- Style Link-->
     <link rel="stylesheet" type="text/css" href="/css/screen.css">
     <link rel="stylesheet" type="text/css" href="../../bower_components/Ionicons/css/ionicons.min.css">
 
     <!-- Google Materialize-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link rel="stylesheet" href="../../bower_components/Materialize/bin/materialize.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">   
+
+
+
 
 </head>
 
@@ -116,6 +119,8 @@
           </div>
         </div>
 
+
+
         <div id="description">
           <div class="input-field">
             <textarea id="task-description" id="textarea1" class="materialize-textarea"></textarea>
@@ -142,16 +147,22 @@
       </form>
     </div>
 
+
     <h3 id="open-task-header"> Open tasks </h3> 
     <div id="open-task-div"> 
     </div> 
 
-    <h3 id='closed-task-header'> Closed tasks </h3> 
-    <div id="closed-task-div"> 
+    <div id="button-header"> 
+      <h5 id='closed-task-header'> Recently Completed Tasks</h5>
     </div> 
+    <div id="closed-task-div">        
+    </div>
+
+
+  </div> 
 
  
-  </div> 
+ 
   </script> 
 
 
@@ -166,20 +177,31 @@
     <ul class="collapsible" data-collapsible="expandable">     
 
       <li>
-        {{#if open}}
-          <i id="task-complete" class="icon ion-android-checkbox-outline-blank"></i>
-        {{else}}
-           <i id="task-complete" class="icon ion-android-checkbox-outline"></i>
-        {{/if}}
+
         <div id="task-header-div" class="collapsible-header"> 
-          {{ title }} 
-          {{ due}}
+          {{#if open}}
+            <i id="task-complete" class="icon ion-android-checkbox-outline-blank"></i>
+          {{else}}
+             <i id="task-complete" class="icon ion-android-checkbox-outline"></i>
+          {{/if}}
+      
+            <p class="title"> {{ title }} </p> 
+            <p class="date">  {{ due }} </p> 
         </div>
 
-        <div id="task-body-div" class="collapsible-body">
+        <div id="task-body-div">
             {{ description }}
         </div>
-      </li> 
+
+        {{#if description}}
+          <div id="extend-wrap">
+            <i id="extend" class="icon ion-arrow-down-b "> </i> 
+          </div> 
+        {{/if}}
+
+
+      </li>
+
     </ul>
 
   </script> 
