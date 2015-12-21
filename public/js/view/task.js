@@ -120,62 +120,66 @@ App.View.TaskWindow = Backbone.View.extend({
 
 
     var taskDue = $('#task-due').val(); 
-    taskDue = taskDue.split(" ");
 
-    var day = parseInt(taskDue[0]); 
+    if (taskDue) {    
+      taskDue = taskDue.split(" ");
 
-    // if (day < 10) {
-    //   day = day.toString()
-    //   day = day.split("");
-    //   day.splice(0,0,"0");
-    //   day = day.join("");
-    // }
+      var day = parseInt(taskDue[0]); 
 
-    console.log(day); 
+      // if (day < 10) {
+      //   day = day.toString()
+      //   day = day.split("");
+      //   day.splice(0,0,"0");
+      //   day = day.join("");
+      // }
 
-    var month = taskDue[1].slice(0, -1); 
-    var year = taskDue[2]; 
-    switch (month) {
-      case "January":
-        month = "1";
-        break;
-      case "February":
-        month = "2";
-        break;
-      case "March":
-        month = "3";
-        break;
-      case "April":
-        month = "4";
-        break;
-      case "May":
-        month = "5";
-        break;
-      case "June":
-        month = "6";
-        break;
-      case "July":
-        month = "7";
-        break;
-      case "August":
-        month = "8";
-        break;
-      case "September":
-        month = "9";
-        break;
-      case "October":
-        month = "10";
-        break;
-      case "November":
-        month = "11";
-        break;
-      case "December":
-        month = "12";
-        break;
+      console.log(day); 
+
+      var month = taskDue[1].slice(0, -1); 
+      var year = taskDue[2]; 
+      switch (month) {
+        case "January":
+          month = "1";
+          break;
+        case "February":
+          month = "2";
+          break;
+        case "March":
+          month = "3";
+          break;
+        case "April":
+          month = "4";
+          break;
+        case "May":
+          month = "5";
+          break;
+        case "June":
+          month = "6";
+          break;
+        case "July":
+          month = "7";
+          break;
+        case "August":
+          month = "8";
+          break;
+        case "September":
+          month = "9";
+          break;
+        case "October":
+          month = "10";
+          break;
+        case "November":
+          month = "11";
+          break;
+        case "December":
+          month = "12";
+          break;
+      }
+
+      taskDue = year + "-" + month + "-" + day;
+    
     }
 
-    taskDue = year + "-" + month + "-" + day;
-    
     /*----------  
       - Create task model
     ----------*/  
@@ -248,18 +252,7 @@ App.View.Task = Backbone.View.extend({
     var dueDate = this.model.get('due');
 
     var timeUntilDue = currentDate.to(dueDate); 
-    this.model.set('untilDue', timeUntilDue )
-
-
-
-
-
-
-
-
-
-
-
+    this.model.set('untilDue', timeUntilDue );
 
 
     this.$el.html(this.template(this.model.toJSON()));    
@@ -268,17 +261,37 @@ App.View.Task = Backbone.View.extend({
     ----------*/  
     if (this.model.toJSON().open === true) {
       console.log("this")
-      $("#open-task-div").append(this.$el);  
+      $("#open-task-div").prepend(this.$el);  
     }
     else {
       console.log("that")
-      $("#closed-task-div").append(this.$el);       
+      $("#closed-task-div").prepend(this.$el);       
     }
   },
 
   events: {    
     'click #extend': 'toggleDescription',    
-    'click #task-complete' : 'complete'
+    'click #task-complete' : 'complete',
+    'click #star-wrap-task i' : 'starTask'
+  },
+
+  starTask: function(event) {
+    var self = this; 
+
+    $( event.target).toggleClass('star-true');
+
+    if (this.model.get("star") === true) {
+      self.model.set("star", false)
+    }
+    else {
+      self.model.set("star", true)
+    }
+    self.model.save()
+      .done(function(response) {
+      })
+      .fail(function(response) {
+      })   
+
   },
 
   /*=============================================

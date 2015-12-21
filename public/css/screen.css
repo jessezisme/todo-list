@@ -420,42 +420,48 @@ button {
 .taskView #task-complete {
   cursor: hand;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
 }
 /* line 232, ../sass/screen.scss */
 .taskView #task-complete {
-  display: inline-block;
-  font-size: 3rem;
-  padding-right: 10px;
-}
-/* line 238, ../sass/screen.scss */
-.taskView .title {
-  width: 81.66667%;
+  width: 15%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
   display: inline-block;
+  font-size: 3rem;
 }
-/* line 244, ../sass/screen.scss */
+/* line 238, ../sass/screen.scss */
+.taskView .title-wrap {
+  width: 65%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  line-height: 1.5rem !important;
+  height: auto;
+  min-height: 50px;
+  overflow-wrap: break-word;
+}
+/* line 252, ../sass/screen.scss */
 .taskView .date-div {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
 }
-/* line 247, ../sass/screen.scss */
+/* line 255, ../sass/screen.scss */
 .taskView .date {
   display: inline;
   color: #00bfa5;
   float: left;
 }
-/* line 252, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .taskView .until-due {
   display: inline;
   float: right;
-  color: #00695c;
+  color: #00bfa5;
 }
-/* line 260, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 .taskView #extend-wrap {
   width: 100%;
   float: left;
@@ -463,23 +469,44 @@ button {
   margin-right: 0.83333%;
   text-align: center;
 }
-/* line 264, ../sass/screen.scss */
+/* line 270, ../sass/screen.scss */
 .taskView #extend-wrap #extend {
   display: block;
   width: 100%;
   height: 100%;
   font-size: 2rem;
 }
-/* line 271, ../sass/screen.scss */
+/* line 277, ../sass/screen.scss */
 .taskView #task-body-div {
   padding: 20px 30px;
 }
-/* line 274, ../sass/screen.scss */
+/* line 280, ../sass/screen.scss */
 .taskView #task-header-div {
   overflow: hidden;
   *zoom: 1;
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  margin-bottom: 20px;
 }
-/* line 277, ../sass/screen.scss */
+/* line 285, ../sass/screen.scss */
 .taskView .collapsible-header {
   padding: 15px 10px !important;
+}
+/* line 289, ../sass/screen.scss */
+.taskView #star-wrap-task {
+  width: 15%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
+  text-align: right;
+}
+/* line 293, ../sass/screen.scss */
+.taskView #star-wrap-task i {
+  font-size: 2.5rem !important;
+}
+/* line 297, ../sass/screen.scss */
+.taskView #star-wrap-task .star-true {
+  color: #1de9b6;
 }

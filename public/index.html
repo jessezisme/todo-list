@@ -177,12 +177,26 @@
           {{else}}
              <i id="task-complete" class="icon ion-android-checkbox-outline"></i>
           {{/if}}
-      
+
+          <div class="title-wrap">            
             <p class="title"> {{ title }} </p> 
+          </div> 
+
+          {{#if star}}
+            <div id="star-wrap-task">        
+              <button> <i class="icon ion-ios-star star-true"></i> </button> 
+            </div> 
+          {{else}}
+              <div id="star-wrap-task">        
+                <button> <i class="icon ion-ios-star"></i> </button> 
+              </div> 
+          {{/if}}
+      
+
             
             <div class="date-div">
-              <p class="date">  {{ due }} ...  </p> 
-              <p class="until-due"> ( {{ untilDue }} ) </p> 
+              <p class="date">  {{ due }} </p> 
+              <p class="until-due"> ( Due {{ untilDue }} ) </p> 
             </div> 
 
 
