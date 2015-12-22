@@ -21,7 +21,6 @@
     "backbone": "~1.2.3",
     "handlebars": "~4.0.5",
     "js-cookie": "~2.0.4",
-    "lodash": "~3.10.1",
     "underscore": "~1.8.3"
   }
 }

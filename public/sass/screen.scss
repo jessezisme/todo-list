@@ -9,8 +9,6 @@
 @import "compass/layout";
 @import "compass/utilities/general";
 
-@include sticky-footer(150px);
-
 
 .container {
   @include container; 
@@ -32,9 +30,6 @@ header {
     height: 75px; 
     line-height: 75px; 
   }
-}
-a {
-  cursor: hand; 
 }
 button {
   background: transparent;
@@ -73,6 +68,11 @@ button {
     }
   }
 
+  #new-user, #login {
+    display: none !important; 
+
+  }
+
   .register {
     background: transparent !important;
   }
@@ -89,11 +89,12 @@ button {
     margin: 20px auto;  
     float: none; 
     text-align: center;
-    padding: 30px (gutter() * 6) ;
+    padding: 30px (gutter() * 6);
+
   }
 
   .inner-form-wrap {
-    
+
   }
 
 }
@@ -188,7 +189,6 @@ button {
 
   #closed-task-header:hover {
     @include opacity(.7); 
-    cursor: pointer; 
   }
 
   #button-header {
@@ -225,53 +225,45 @@ button {
     width: 100%;
   }
   #task-complete {
-    cursor: hand;
-    cursor: pointer; 
-    text-align: left; 
-  }
-  #task-complete {
     @include span(2); 
     display: inline-block; 
-    font-size: 3rem;     
+    font-size: 3rem;
+    color: #1de9b6;
+    cursor: pointer; 
+    text-align: left;       
   }
 
   .title-wrap {
     @include span(8); 
+    min-width: span(8); 
     line-height: 1.5rem !important;
     height: auto; 
     min-height: 50px; 
     overflow-wrap: break-word; 
   }
 
-  // .title {
-  //   @include span(8); 
-  //   display: inline-block;
-
-  // }
-
   .date-div {
     @include span(12); 
   }
   .date {
     display: inline;
-    color: #00bfa5; 
     float: left;
+    color: #00695c; 
   }
   .until-due {
     display: inline; 
     float: right; 
-    color: #00bfa5; 
+    color: #00695c;
   }
 
   #extend-wrap {
     @include span(100%);
     text-align: center; 
+    cursor: pointer; 
 
     #extend {
-      display: block;
-      width: 100%;
-      height: 100%; 
       font-size: 2rem; 
+      color: #1de9b6;
     }
   }
   #task-body-div {
@@ -291,7 +283,10 @@ button {
     text-align: right; 
 
     i {
+      display: inline-block; 
+      float: right; 
       font-size: 2.5rem !important;  
+      color: #1de9b6;
     }
 
     .star-true {

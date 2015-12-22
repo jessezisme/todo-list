@@ -25,18 +25,13 @@ App.View.Login = Backbone.View.extend({
       password: $('#password').val().toLowerCase()
     };
 
-    console.log(JSON.stringify(loginData));
-
     $.ajax({
       url: "/login",
       data: loginData,
       type: "POST"
     }).done(function(data) {
-
-      console.log(data); 
       
       if (data == true) {
-        console.log('tasks loading');
         Cookies.set('todo', loginData.username );
         app.router.navigate('tasks', {trigger: true});
       }

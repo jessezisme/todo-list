@@ -6,10 +6,10 @@ App.Collection.Task = Backbone.Collection.extend({
 		return ( '/collection/' + Cookies.get('todo')	)
 	},
 	initialize: function() {
-		console.log('app.collection.task initializing')
+		// console.log('app.collection.task initializing')
 		this.on('change:open', this.changeSomething, this);
 	},
 	changeSomething: function() {
-		console.log('something changed');
-	}
-})
+		// console.log('collection model changed');
+	}	
+});

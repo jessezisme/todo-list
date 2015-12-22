@@ -16,27 +16,24 @@ app.use(express.static('public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 
-// db.post('todo-users', {
-//   "user": "test",
-//   "password": "password"
-// })
-// .then(function(result) {
-//   console.log(result)
-// })
-// .fail(function(error) {
-//   console.log(err); 
-// })
-
-
+/*=============================================
+=        Send static index.html file       =
+=============================================*/
 app.get('/', function(req, res) {
+  
   res.sendFile(__dirname + '/public/index.html');
+
 })
+/*======================*/
 
-
+/*=============================================
+=            User Login          =
+=============================================*/
 app.post('/login', function(req, res) {
 
   var loginUser = req.body.username.toLowerCase(); 
   var loginPassword = req.body.password.toLowerCase(); 
+
 
   db.search('todo-users', 'value.user: ' + ("" + loginUser) )
   .then(function (result) {
@@ -44,6 +41,11 @@ app.post('/login', function(req, res) {
     var dbUser = result.body.results[0].value.user.toLowerCase(); 
     var dbPassword = result.body.results[0].value.password.toLowerCase(); 
 
+    /*----------  
+      Checks:
+        - Whether login user and password matches;
+        - Also checks whether user exits, but password doesn't match
+    ----------*/
     if (loginUser == dbUser) {
       if (loginPassword == dbPassword) {
         res.send(true);
@@ -56,20 +58,18 @@ app.post('/login', function(req, res) {
       res.send("no record");
     }
   });
-
+  /*--------------------*/
 });  
+/*======================*/
 
-
-// app.get('/collection', function(req, res) {
-
-//   console.log('get collection request');
-//   console.log(req.body);
-//   res.send(true)
-// })
-
+/*=============================================
+=            FETCH: Task Collection         =
+=============================================*/
 app.get('/collection/:id', function(req, res) {
-
-  console.log('get collection/:id request: ' + req.params.id);  
+  /*----------  
+    URL includes USER NAME, which is used to fetch correct user's tasks
+  ----------*/
+  // console.log('get collection/:id request: ' + req.params.id);  
   var todoUser = req.params.id;   
 
   db.search('todo-tasks', 'value.user: ' + ("" + todoUser) )
@@ -88,7 +88,7 @@ app.get('/collection/:id', function(req, res) {
   });  
 
 }); 
-
+/*======================*/
 
 /*=============================================
 =           Upload New Task          =
@@ -100,8 +100,6 @@ app.post('/task', function(req, res) {
   ----------*/  
   var key = shortid.generate(); 
   req.body.id = key; 
-  console.log("new task body is: " + req.body);
-  console.log('new key is: ' + req.body.id)
 
   /*----------  
     - Upload task to server
@@ -117,7 +115,6 @@ app.post('/task', function(req, res) {
 
 })
 /*======================*/
-
 
 /*=============================================
 =           Save Model       =
@@ -138,6 +135,27 @@ app.put('/task/:id', function(req, res) {
 
 })
 /*======================*/
+
+/*=============================================
+=           Delete Model       =
+=============================================*/  
+// app.delete('/task/:id', function(req, res) {
+//   console.log('delete request');
+//   var key = req.params.id;  
+
+//   var deleteResponse = {
+//     message: "Model successfully deleted"
+//   } 
+
+//   db.remove('todo-tasks', key, true)
+//   .then(function (result) {
+//     res.send(deleteResponse);
+//   })
+//   .fail(function (err) {
+//     res.send(false); 
+//   });   
+
+// })
 
 
 /*=============================================

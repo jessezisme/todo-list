@@ -7,7 +7,6 @@ App.Router.Router = Backbone.Router.extend({
 	},
 
 	removeAllViews: function() {
-		console.log("removing all views")
 		for (var key in app.view) {
 			app.view[key].remove();
 			delete app.view[key];
@@ -17,10 +16,11 @@ App.Router.Router = Backbone.Router.extend({
 	index: function() {
 		this.removeAllViews(); 
 		app.view.login = new App.View.Login;
+		$('#username').val("test");
+		$('#password').val("password");
 	},
 
 	tasks: function() {
-		console.log("Router: tasks view")
 		this.removeAllViews();
 		app.view.taskWindow = new App.View.TaskWindow; 
 	}

@@ -14,8 +14,9 @@ App.Model.Task = Backbone.Model.extend({
 		user: '',
 		title:'',
 		description:'',
-		due: '',
-		untilDue: '',
+		due: '',		
+		untilDueTime: 0,
+		untilDuePretty: '',
 		open: true,
 		star: false
 	},

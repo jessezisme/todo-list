@@ -22,13 +22,33 @@ App.View.TaskWindow = Backbone.View.extend({
 
     app.collection.task.fetch({
       success: function(resModel, response, options) {
-        console.log('app.collection.task.fetch: SUCCESS');
-        
-        app.collection.task.forEach(function(taskModel) {          
+        // console.log('app.collection.task.fetch: SUCCESS');
+
+        app.collection.task.forEach(function(taskModel) {  
+          if (taskModel.get('due')) {
+            var currentYear = moment().get('year').toString();
+            var currentMonth = (moment().get('month')) + 1;
+            currentMonth = currentMonth.toString(); 
+            var currentDay = moment().get('date');
+            var currentDate = moment(currentYear + "-" + currentMonth + "-" + currentDay);
+            var dueDate =  taskModel.get('due');
+            var timeUntilDuePretty = currentDate.to(dueDate); 
+            taskModel.set('untilDuePretty', timeUntilDuePretty  );
+
+            var untilDueTime = currentDate.diff(dueDate, 'days');
+            taskModel.set('untilDueTime', untilDueTime);
+          }
+        });
+
+        var sortedCollection = _.sortBy(app.collection.task.toJSON(), 'untilDueTime');
+        app.collection.task.reset(sortedCollection); 
+
+        app.collection.task.forEach(function (taskModel) {
           app.view.task = new App.View.Task({
             model: taskModel
           });
         });
+
         /*----------  
           Determine number of closed tasks for button/header number on INITIALIZE
         ----------*/
@@ -46,8 +66,9 @@ App.View.TaskWindow = Backbone.View.extend({
       },
 
       failure: function(resModel, response, options) {
-        console.log(response)
+        // console.log("ERROR ERROR: Task Collection failed to load from server"));
       }
+
     });
 
     /*----------  
@@ -64,7 +85,7 @@ App.View.TaskWindow = Backbone.View.extend({
       $('#closed-task-header').html("Recently Completed Tasks (" + counter + ")"); 
     }); 
   
- },
+  },
 
   render: function() {
    	this.$el.html(this.template({}));
@@ -116,8 +137,6 @@ App.View.TaskWindow = Backbone.View.extend({
       if (  $('#star-wrap i').hasClass('star-true')  ) {
         taskStar = true; 
       } 
- 
-
 
     var taskDue = $('#task-due').val(); 
 
@@ -125,15 +144,6 @@ App.View.TaskWindow = Backbone.View.extend({
       taskDue = taskDue.split(" ");
 
       var day = parseInt(taskDue[0]); 
-
-      // if (day < 10) {
-      //   day = day.toString()
-      //   day = day.split("");
-      //   day.splice(0,0,"0");
-      //   day = day.join("");
-      // }
-
-      console.log(day); 
 
       var month = taskDue[1].slice(0, -1); 
       var year = taskDue[2]; 
@@ -179,7 +189,6 @@ App.View.TaskWindow = Backbone.View.extend({
       taskDue = year + "-" + month + "-" + day;
     
     }
-
     /*----------  
       - Create task model
     ----------*/  
@@ -195,8 +204,7 @@ App.View.TaskWindow = Backbone.View.extend({
     ----------*/  
     app.model.task.save({}, {wait: true})
       .done(function(response) {
-        console.log(response); 
-        console.log("app.model.task: successful save"); 
+        // console.log("app.model.task: successful save"); 
         /*----------  
           Only if model is successfully saved to server:
           - Create view for model; & 
@@ -205,8 +213,7 @@ App.View.TaskWindow = Backbone.View.extend({
         app.collection.task.add(app.model.task);         
         app.view.task = new App.View.Task({
           model: app.model.task
-        });        
-
+        }); 
         /*----------  
           Clear form 
         ----------*/
@@ -242,43 +249,52 @@ App.View.Task = Backbone.View.extend({
 
   render: function() {
     var self = this; 
-    console.log('task rendering');
+    /*----------  
+      - Set Pretty Due time (i.e. 2 days until due)
+    ----------*/ 
+    if (this.model.get('due')) {
+      var currentYear = moment().get('year').toString();
+      var currentMonth = (moment().get('month')) + 1;
+      currentMonth = currentMonth.toString(); 
+      var currentDay = moment().get('date');
+      var currentDate = moment(currentYear + "-" + currentMonth + "-" + currentDay);
+      var dueDate = this.model.get('due');
 
-    var currentYear = moment().get('year').toString();
-    var currentMonth = (moment().get('month')) + 1;
-    currentMonth = currentMonth.toString(); 
-    var currentDay = moment().get('date');
-    var currentDate = moment(currentYear + "-" + currentMonth + "-" + currentDay);
-    var dueDate = this.model.get('due');
-
-    var timeUntilDue = currentDate.to(dueDate); 
-    this.model.set('untilDue', timeUntilDue );
-
+      var timeUntilDuePretty  = currentDate.to(dueDate); 
+      this.model.set('untilDuePretty', timeUntilDuePretty  );
+    }
 
     this.$el.html(this.template(this.model.toJSON()));    
     /*----------  
-      - Before appending to either open or closed DOM section, check task's completion status 
+      - Before appending to either open or closed section, check task's completion status 
     ----------*/  
     if (this.model.toJSON().open === true) {
-      console.log("this")
       $("#open-task-div").prepend(this.$el);  
     }
     else {
-      console.log("that")
-      $("#closed-task-div").prepend(this.$el);       
+      $("#closed-task-div").prepend(this.$el); 
     }
   },
 
   events: {    
-    'click #extend': 'toggleDescription',    
+    'click #extend-wrap': 'toggleDescription',    
     'click #task-complete' : 'complete',
     'click #star-wrap-task i' : 'starTask'
   },
-
+   /*=============================================
+    CLICK EVENT:
+    - Clicking star will set the model's "star" property';
+      and change star color 
+  =============================================*/  
   starTask: function(event) {
     var self = this; 
-
-    $( event.target).toggleClass('star-true');
+    
+    if (  $(event.target).hasClass('ion-ios-star')   ) {
+      $(event.target).removeClass().addClass('icon ion-ios-star-outline');  
+    }
+    else {
+      $(event.target).removeClass().addClass('ion-ios-star');
+    }
 
     if (this.model.get("star") === true) {
       self.model.set("star", false)
@@ -286,32 +302,36 @@ App.View.Task = Backbone.View.extend({
     else {
       self.model.set("star", true)
     }
-    self.model.save()
-      .done(function(response) {
-      })
-      .fail(function(response) {
-      })   
+
+    /*----------  
+      Only save star property to server if task is OPEN; don't waste server request if closed
+    ----------*/    
+    if (this.model.get("open") === true) {
+      self.model.save()
+        .done(function(response) {
+        })
+        .fail(function(response) {
+        })  
+    } 
 
   },
-
+  /*===========*/  
   /*=============================================
     CLICK EVENT:
     - Expand task description on click             
   =============================================*/  
   toggleDescription: function(event) {
-    var target = $( event.target );
-    console.log('click')
-    target.parents('li').find('#task-body-div').toggle(250, function() {
-      
-      if (target.hasClass("ion-arrow-down-b")) {
-        target.removeClass();
-        target.addClass("icon ion-arrow-up-b")
+    var target = $( event.target ).parents('li');
+
+    target.find('#task-body-div').fadeToggle(250, function() {      
+      if (target.find('#extend').hasClass("ion-arrow-down-b")) {
+        target.find('#extend').removeClass().addClass("icon ion-arrow-up-b");
       }
       else {
-        target.removeClass();
-        target.addClass("icon ion-arrow-down-b")
+        target.find('#extend').removeClass().addClass("icon ion-arrow-down-b");
       }
     }); 
+
   },
   /*===========*/  
   /*=============================================
@@ -321,6 +341,7 @@ App.View.Task = Backbone.View.extend({
     - Re-render         
   =============================================*/
   complete: function(event) {
+    console.log('toggle completion')
     var self = this; 
 
     if (this.model.get("open") === true) {
