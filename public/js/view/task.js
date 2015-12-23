@@ -338,7 +338,7 @@ App.View.Task = Backbone.View.extend({
     CLICK EVENT: 
     - Toggle completion status (i.e. open/close)
     - Save to Server
-    - Re-render         
+    - Remove and Create New View         
   =============================================*/
   complete: function(event) {
     console.log('toggle completion')
@@ -351,13 +351,17 @@ App.View.Task = Backbone.View.extend({
       self.model.set("open", true);
     }
 
-    this.render(); 
-
     self.model.save()
       .done(function(response) {
       })
       .fail(function(response) {
-      })    
+      }) 
+
+    var thisModel = this.model; 
+    this.remove();
+    app.view.task = new App.View.Task({ 
+      model: thisModel 
+    });   
 
   }
   /*===========*/
