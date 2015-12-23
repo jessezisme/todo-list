@@ -72,19 +72,18 @@ app.get('/collection/:id', function(req, res) {
   // console.log('get collection/:id request: ' + req.params.id);  
   var todoUser = req.params.id;   
 
-  db.search('todo-tasks', 'value.user: ' + ("" + todoUser) )
-  .then(function (result) {
-    console.log('orchestrate search tasks: ' + result.body.results ); 
-    
+  db.newSearchBuilder()
+    .collection('todo-tasks')
+    .limit(100)
+    .query( 'value.user: ' + ("" + todoUser) )
+    .then(function (result) {    
     var taskCollection = result.body.results; 
     var finalTasks = []; 
 
     for (var i = 0; i < taskCollection.length; i++) {
       finalTasks.push(taskCollection[i].value); 
     }
-
     res.send(finalTasks); 
-
   });  
 
 }); 
