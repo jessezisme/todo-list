@@ -34,13 +34,11 @@ app.post('/login', function(req, res) {
   var loginUser = req.body.username.toLowerCase(); 
   var loginPassword = req.body.password.toLowerCase(); 
 
-
   db.search('todo-users', 'value.user: ' + ("" + loginUser) )
   .then(function (result) {
 
     var dbUser = result.body.results[0].value.user.toLowerCase(); 
     var dbPassword = result.body.results[0].value.password.toLowerCase(); 
-
     /*----------  
       Checks:
         - Whether login user and password matches;
@@ -70,15 +68,16 @@ app.get('/collection/:id', function(req, res) {
     URL includes USER NAME, which is used to fetch correct user's tasks
   ----------*/
   // console.log('get collection/:id request: ' + req.params.id);  
-  var todoUser = req.params.id;   
+  var todoUser = req.params.id;
+  var finalTasks = [];  
 
   db.newSearchBuilder()
     .collection('todo-tasks')
     .limit(100)
     .query( 'value.user: ' + ("" + todoUser) )
-    .then(function (result) {    
-    var taskCollection = result.body.results; 
-    var finalTasks = []; 
+    .then(function (result) {  
+
+    var taskCollection = result.body.results;
 
     for (var i = 0; i < taskCollection.length; i++) {
       finalTasks.push(taskCollection[i].value); 
@@ -138,23 +137,23 @@ app.put('/task/:id', function(req, res) {
 /*=============================================
 =           Delete Model       =
 =============================================*/  
-// app.delete('/task/:id', function(req, res) {
-//   console.log('delete request');
-//   var key = req.params.id;  
+app.delete('/task/:id', function(req, res) {
+  console.log('delete request');
+  var key = req.params.id;  
 
-//   var deleteResponse = {
-//     message: "Model successfully deleted"
-//   } 
+  var deleteResponse = {
+    message: "Model successfully deleted"
+  } 
 
-//   db.remove('todo-tasks', key, true)
-//   .then(function (result) {
-//     res.send(deleteResponse);
-//   })
-//   .fail(function (err) {
-//     res.send(false); 
-//   });   
+  db.remove('todo-tasks', key, true)
+  .then(function (result) {
+    res.send(deleteResponse);
+  })
+  .fail(function (err) {
+    res.send(false); 
+  });   
 
-// })
+})
 
 
 /*=============================================

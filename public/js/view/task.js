@@ -17,6 +17,7 @@ App.View.TaskWindow = Backbone.View.extend({
           - Create VIEW for each MODEL
           - Cycle through to determine number of closed tasks; used to populate number in "recently completed
             tasks" header/button 
+          - Cap recently-completed tasks at 20 by deleting/destroying model
     ------------- */
     app.collection.task = new App.Collection.Task;
 
@@ -42,6 +43,21 @@ App.View.TaskWindow = Backbone.View.extend({
 
         var sortedCollection = _.sortBy(app.collection.task.toJSON(), 'untilDueTime');
         app.collection.task.reset(sortedCollection); 
+
+        /*----------  
+          Subsection comment block  
+        ----------*/        
+        var closedTasks = app.collection.task.where({open: false})
+
+        if (closedTasks.length > 20) {
+          var oldestClosedTask = closedTasks.pop();
+          oldestClosedTask.destroy({
+            success: function(model, response) {
+              console.log('model deleted')
+            }
+          });
+        }
+
 
         app.collection.task.forEach(function (taskModel) {
           app.view.task = new App.View.Task({
