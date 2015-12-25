@@ -16,14 +16,11 @@ App.Router.Router = Backbone.Router.extend({
 	index: function() {
 		this.removeAllViews(); 
 		app.view.login = new App.View.Login;
-		$('#username').val("test");
-		$('#password').val("password");
 	},
 
 	tasks: function() {
 		this.removeAllViews();
 		app.view.taskWindow = new App.View.TaskWindow; 
 	}
-
 
 })

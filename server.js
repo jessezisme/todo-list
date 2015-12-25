@@ -12,7 +12,7 @@ var db = require('orchestrate')(hide.dbkey);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static('public'));
+app.use(express.static('app'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 
@@ -21,10 +21,18 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 =============================================*/
 app.get('/', function(req, res) {
   
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/app/index.html');
 
 })
 /*======================*/
+
+
+app.get('/test', function(req, res) {
+  
+  res.sendFile(__dirname + '/app/test/test.html');
+
+})
+
 
 /*=============================================
 =            User Login          =
