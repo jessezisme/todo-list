@@ -206,7 +206,7 @@
 
 </div>
 
-
+  
 
   <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
   <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
@@ -224,7 +224,9 @@
   <script type="text/javascript" src="../js/view/task.js"></script>
   <script type="text/javascript" src="../js/router/router.js"> </script> 
 
-  <script type="text/javascript" src="../js/main.js"></script>
+  <!-- 
+    <script type="text/javascript" src="../js/main.js"></script>
+   -->
 
   <!-- Google Materialize JS -->           
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
@@ -247,10 +249,10 @@ MOCHA TESTING
     }
   </style>
 
-  <link rel="stylesheet" href="lib/mocha.css">
-  <script src="lib/mocha.js"> </script> 
-  <script src="lib/chai.js"> </script>
-  <script src="lib/sinon.js"> </script> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.js"> </script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.4.1/chai.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"> </script> 
   <script>
       var expect = chai.expect;
       mocha.setup("bdd");
@@ -262,13 +264,19 @@ MOCHA TESTING
       }
   </script> 
 
+
+  <script>
+    // sinon.stub(App.Collection.Task.prototype, "fetch");
+  </script> 
+
+  <script src="spec/router/router.spec.js"> </script> 
   <script src="spec/views/login.spec.js"></script> 
   <script src="spec/collection/collection.spec.js"> </script> 
   <script src="spec/model/model.spec.js"> </script> 
   <script src="spec/namespace/namespace.spec.js"> </script> 
-  <script src="spec/router/router.spec.js"> </script> 
-
   <script src="spec/views/task.spec.js"></script> 
+
+
 
 
   </body>

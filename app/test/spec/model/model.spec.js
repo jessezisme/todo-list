@@ -1,23 +1,45 @@
 describe("MODEL.js", function() {
 
 	describe("App.Model.Task", function() {
-		app.model.task = new App.Model.Task();
+
+			this.server = sinon.fakeServer.create(); 		
+
+			this.model1 = new App.Model.Task().toJSON(); 
+			this.model1 = JSON.stringify(this.model1); 
+
+			this.server.respondWith('get', '/collection/', this.model1); 
+
+			this.collection = new App.Collection.Task();
+			this.collection.set('url', '/collection/')
+		})
+
+		before(function() {
+			
+			this.server = sinon.fakeServer.create();
+
+			this.server
+
+			this.task = new App.Model.Task();
+			//urlRoot = 'task'
+			this.task.set('id', 1)
+
+
+		})
 
 		it("creates new app.model.task and ensures it is an object", function() {			
-			expect(app.model.task).to.be.ok; 
-			expect(app.model.task).to.be.an("object");
+			expect(this.task).to.be.ok; 
+			expect(this.task).to.be.an("object");
 		})
 
 		it("has default values", function() {
-			expect(app.model.task.get("untilDueTime"))
-				.to.equal(0).and
-				.to.equal(true);
-				.to.equal(false);
+			expect(this.task.get("untilDueTime")).to.equal(0);
+			expect(this.task.get("open")).to.equal(true);
+			expect(this.task.get("star")).to.equal(false); 
 		})
 
 		it("sets passed attributes", function() {
-			app.model.task.set("user", "test");
-			expect(app.model.task.get("user")).to.equal("test");
+			this.task.set("user", "test");
+			expect(this.task.get("user")).to.equal("test");
 		})
 
 	})

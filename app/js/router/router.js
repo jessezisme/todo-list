@@ -14,11 +14,13 @@ App.Router.Router = Backbone.Router.extend({
 	},
 
 	index: function() {
+		console.log("index route")
 		this.removeAllViews(); 
 		app.view.login = new App.View.Login;
 	},
 
 	tasks: function() {
+		console.log('task route');
 		this.removeAllViews();
 		app.view.taskWindow = new App.View.TaskWindow; 
 	}
