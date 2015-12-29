@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  
     <!-- Style Links-->
     <!-- <link rel="stylesheet" type="text/css" href="/css/screen.css"> -->
-    <link rel="stylesheet" type="text/css" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/Ionicons/css/ionicons.min.css">
 
 </head>
 <body>
@@ -210,19 +210,19 @@
 
   <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
   <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
-  <script type='text/javascript' src='../../bower_components/underscore/underscore.js'></script>
-  <script type='text/javascript' src='../../bower_components/backbone/backbone.js'></script>
-  <script type='text/javascript' src='../../bower_components/handlebars/handlebars.js'></script>
-  <script type='text/javascript' src='../../bower_components/js-cookie/src/js.cookie.js'></script>
-  <script type='text/javascript' src='../../bower_components/moment/moment.js'></script>
+  <script type='text/javascript' src='../bower_components/underscore/underscore.js'></script>
+  <script type='text/javascript' src='../bower_components/backbone/backbone.js'></script>
+  <script type='text/javascript' src='../bower_components/handlebars/handlebars.js'></script>
+  <script type='text/javascript' src='../bower_components/js-cookie/src/js.cookie.js'></script>
+  <script type='text/javascript' src='../bower_components/moment/moment.js'></script>
 
-  <script type="text/javascript" src="../js/namespace/namespace.js"></script>
-  <script type="text/javascript" src="../js/model/model.js"></script>
-  <script type="text/javascript" src="../js/collection/collection.js"> </script> 
+  <script type="text/javascript" src="../app/js/namespace/namespace.js"></script>
+  <script type="text/javascript" src="../app/js/model/model.js"></script>
+  <script type="text/javascript" src="../app/js/collection/collection.js"> </script> 
 
-  <script type="text/javascript" src="../js/view/login.js"></script>
-  <script type="text/javascript" src="../js/view/task.js"></script>
-  <script type="text/javascript" src="../js/router/router.js"> </script> 
+  <script type="text/javascript" src="../app/js/view/login.js"></script>
+  <script type="text/javascript" src="../app/js/view/task.js"></script>
+  <script type="text/javascript" src="../app/js/router/router.js"> </script> 
 
   <!-- 
     <script type="text/javascript" src="../js/main.js"></script>
@@ -249,10 +249,13 @@ MOCHA TESTING
     }
   </style>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.css">  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/expect/1.13.4/expect.js"> </script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.3.4/mocha.js"> </script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.4.1/chai.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"> </script> 
+
+
   <script>
       var expect = chai.expect;
       mocha.setup("bdd");
@@ -264,17 +267,13 @@ MOCHA TESTING
       }
   </script> 
 
-
-  <script>
-    // sinon.stub(App.Collection.Task.prototype, "fetch");
-  </script> 
-
-  <script src="spec/router/router.spec.js"> </script> 
   <script src="spec/views/login.spec.js"></script> 
   <script src="spec/collection/collection.spec.js"> </script> 
   <script src="spec/model/model.spec.js"> </script> 
   <script src="spec/namespace/namespace.spec.js"> </script> 
-  <script src="spec/views/task.spec.js"></script> 
+  <script src="spec/views/task.spec.js"></script>  
+   <!--    <script src="spec/router/router.spec.js"> </script> -->
+
 
 
 

@@ -15,6 +15,10 @@ describe("COLLECTION.js", function() {
 			this.collection.set('url', '/collection/')
 		})
 
+		after(function() {
+			this.server.restore(); 
+		})
+
 
 		describe("creation", function() {
 			it("is a collection object", function() {

@@ -21,16 +21,18 @@ describe("ROUTER.js", function() {
 		App.Router.Router.prototype.removeAllViews.restore(); 
 	})
 
-	it("navigates to index and removes all views", function() {
-		this.router.navigate('index', {trigger: true})
-		expect(App.Router.Router.prototype.index).to.have.been.called;  
-		expect(App.Router.Router.prototype.removeAllViews).to.have.been.called; 
+	it("navigates to index and removes all views", function(done) {
+		this.router.navigate('', {trigger: true})
+		done();
+		expect(App.Router.Router.prototype.index.calledOnce).to.be.true;  
+		expect(App.Router.Router.prototype.removeAllViews.called).to.be.true; 
 	}); 
 
-	it('navigates to tasks and removes all views', function() {	
+	it('navigates to tasks and removes all views', function(done) {	
 		this.router.navigate('tasks', {trigger: true});
-		expect(App.Router.Router.prototype.tasks).to.have.been.called;
-		expect(App.Router.Router.prototype.removeAllViews).to.have.been.called; 
+		done();
+		expect(App.Router.Router.prototype.tasks.calledOnce).to.be.true;
+		expect(App.Router.Router.prototype.removeAllViews.calledOnce).to.be.true; 
 	}); 
 
 })

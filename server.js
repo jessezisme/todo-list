@@ -27,13 +27,6 @@ app.get('/', function(req, res) {
 /*======================*/
 
 
-app.get('/test', function(req, res) {
-  
-  res.sendFile(__dirname + '/app/test/test.html');
-
-})
-
-
 /*=============================================
 =            User Login          =
 =============================================*/

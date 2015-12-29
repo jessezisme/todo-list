@@ -10,6 +10,9 @@ App.Model.User = Backbone.Model.extend({
 
 App.Model.Task = Backbone.Model.extend({
 	urlRoot: 'task',
+	initialize: function() {
+		console.log('model created');
+	},
 	defaults: {
 		user: '',
 		title:'',
