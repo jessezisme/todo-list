@@ -55,7 +55,7 @@ describe('LOGIN.js', function() {
 		expect($('.taskWindowView')).to.be.ok
 	});
 
-	it("on submit form with wrong username/password, denies wrong user name and password", function() {		
+	it("denies access when wrong username/password is entered", function() {		
 		this.server.restore(); 
 		this.server = sinon.fakeServer.create();
 		this.server.respondWith('post', '/login', JSON.stringify(false)); 

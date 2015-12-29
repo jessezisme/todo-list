@@ -42,11 +42,8 @@ App.View.TaskWindow = Backbone.View.extend({
         });
 
         var sortedCollection = _.sortBy(app.collection.task.toJSON(), 'untilDueTime');
-        app.collection.task.reset(sortedCollection); 
+        app.collection.task.reset(sortedCollection);
 
-        /*----------  
-          Subsection comment block  
-        ----------*/        
         var closedTasks = app.collection.task.where({open: false})
 
         if (closedTasks.length > 20) {
@@ -57,7 +54,6 @@ App.View.TaskWindow = Backbone.View.extend({
             }
           });
         }
-
 
         app.collection.task.forEach(function (taskModel) {
           app.view.task = new App.View.Task({
