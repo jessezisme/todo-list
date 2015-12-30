@@ -3,7 +3,8 @@ App.Router.Router = Backbone.Router.extend({
 	
 	routes: {
 		'':	'index',
-		'tasks': 'tasks'
+		'tasks': 'tasks',
+		'removeAllViews': 'removeAllViews'
 	},
 
 	removeAllViews: function() {
