@@ -16,6 +16,8 @@ app.use(express.static('app'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 
+app.set('port', (process.env.PORT || 3000));
+
 /*=============================================
 =        Send static index.html file       =
 =============================================*/
