@@ -79,22 +79,65 @@ app.get('/collection/:id', function(req, res) {
   ----------*/
   // console.log('get collection/:id request: ' + req.params.id);  
   var todoUser = req.params.id;
-  var finalTasks = [];  
+  var finalTasks = [];
+  var counter = 0; 
+  var nextPageVerify = false; 
 
-  db.newSearchBuilder()
-    .collection('todo-tasks')
-    .limit(100)
-    .query( 'value.user: ' + ("" + todoUser) )
-    .then(function (result) {  
 
-    var taskCollection = result.body.results;
+  function fetchData(nextPageResults) {
+    console.log('goodbye')
 
-    for (var i = 0; i < taskCollection.length; i++) {
-      finalTasks.push(taskCollection[i].value); 
+    var nextPage = nextPageResults; 
+
+    if (counter === 0) {
+      db.newSearchBuilder()
+      .collection('todo-tasks')
+      .limit(10)
+      .query( 'value.user: ' + ("" + todoUser) )
+      .then(function (result) { 
+        
+        counter += 1;
+        var taskCollection = result.body.results;
+
+        for (var i = 0; i < taskCollection.length; i++) {
+          finalTasks.push(taskCollection[i].value); 
+        }
+        if (result.links) {
+          console.log('hello if');
+          nextPageVerify = true; 
+          fetchData(result.links.next)
+        }
+        else { 
+          console.log('hello else')
+          res.send(finalTasks)
+        }
+      });
     }
-    res.send(finalTasks); 
-  });  
+    else if ( (counter != 0) && (nextPageVerify != false) ) {
+      nextPage.get().then(function(result) {
 
+        var taskCollection = result.body.results;
+        console.log('shit')
+
+        for (var i = 0; i < taskCollection.length; i++) {
+          finalTasks.push(taskCollection[i].value);
+        }
+        if (result.links.next) {
+          nextPageVerify = true;
+          fetchData(result.links.next)
+        }
+        else {
+          res.send(finalTasks);
+        }
+      })
+    }
+    else {
+      console.log('shit')
+      res.send(finalTasks);
+    }
+  }
+
+  fetchData();
 }); 
 /*======================*/
 
