@@ -92,7 +92,7 @@ app.get('/collection/:id', function(req, res) {
     if (counter === 0) {
       db.newSearchBuilder()
       .collection('todo-tasks')
-      .limit(10)
+      .limit(100)
       .query( 'value.user: ' + ("" + todoUser) )
       .then(function (result) { 
         
