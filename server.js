@@ -6,7 +6,14 @@ var app = express();
 var shortid = require('shortid');
 // shortid.generate()
 
-var hide = require('./git_ignore/hide.js')
+if (process.env.HEROKU === 'true') {
+  hide = {};
+  hide.dbkey = process.env.dbkey
+}
+else {
+  hide = require('./git_ignore/hide.js');
+}
+
 var db = require('orchestrate')(hide.dbkey);
 
 app.use(bodyParser.json());
