@@ -72,7 +72,7 @@ App.View.TaskWindow = Backbone.View.extend({
               counter += 1; 
             }
           })
-          $('#closed-task-header').html("Recently Completed Tasks (" + counter + ")"); 
+          $('#closed-task-header').html("View Recently Completed Tasks (" + counter + ")"); 
         })();
 
       },
@@ -108,7 +108,8 @@ App.View.TaskWindow = Backbone.View.extend({
     'click #star-wrap' : 'toggleStar',
     'click #submit-button' : 'createTask',
     'click label' : 'toggleActive',
-    'click #closed-task-header' : 'toggleClosedTask'
+    'click #closed-task-header' : 'toggleClosedTask',
+    'click #purge' : 'purge'
   },
 
   toggleClosedTask: function(event) {
@@ -291,8 +292,29 @@ App.View.Task = Backbone.View.extend({
   events: {    
     'click #extend-wrap': 'toggleDescription',    
     'click #task-complete' : 'complete',
-    'click #star-wrap-task i' : 'starTask'
+    'click #star-wrap-task i' : 'starTask',
+    'click #purge' : 'purge'
   },
+  /*=============================================
+    CLICK EVENT:
+    - Clicking purge will permanently remove model from database 
+  =============================================*/  
+  purge: function() {
+    this.remove();
+    this.model.destroy();
+    
+    (function() {
+      var openList = app.collection.task.pluck("open");
+      var counter = 0; 
+      openList.forEach(function(openProp) {
+        if (openProp === false) {
+          counter += 1; 
+        }
+      })
+      $('#closed-task-header').html("View Recently Completed Tasks (" + counter + ")"); 
+    })();
+  },
+
    /*=============================================
     CLICK EVENT:
     - Clicking star will set the model's "star" property';
@@ -343,7 +365,6 @@ App.View.Task = Backbone.View.extend({
         target.find('#extend').removeClass().addClass("icon ion-arrow-down-b");
       }
     }); 
-
   },
   /*===========*/  
   /*=============================================
@@ -355,6 +376,7 @@ App.View.Task = Backbone.View.extend({
   complete: function(event) {
     console.log('toggle completion')
     var self = this; 
+            self.remove();
 
     if (this.model.get("open") === true) {
       self.model.set("open", false);
@@ -363,18 +385,26 @@ App.View.Task = Backbone.View.extend({
       self.model.set("open", true);
     }
 
-    self.model.save()
+    this.model.save()
       .done(function(response) {
+        var thisModel = self.model; 
+        app.view.task = new App.View.Task({ 
+          model: thisModel 
+        });   
       })
       .fail(function(response) {
-      }) 
-
-    var thisModel = this.model; 
-    this.remove();
-    app.view.task = new App.View.Task({ 
-      model: thisModel 
-    });   
-
+        alert('error saving task');
+        if (this.model.get("open") === true) {
+          self.model.set("open", false);
+        }
+        else  {
+          self.model.set("open", true);
+        }
+        var thisModel = self.model; 
+        app.view.task = new App.View.Task({ 
+          model: thisModel 
+        }); 
+      })      
   }
   /*===========*/
 })

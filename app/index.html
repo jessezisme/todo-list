@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Todo App</title>
+    <title>Task List</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -21,7 +21,7 @@
   <header> 
     <nav class="blue-grey">
       <div class="nav-wrapper">
-        <a href="#" class="center brand-logo">To-Do</a>
+        <a href="#" class="center brand-logo">Task List</a>
       </div>
     </nav>
   </header> 
@@ -73,6 +73,27 @@
 
         </div> 
       </form>   
+    </div>
+
+    <!-- Modal Trigger -->
+    <a id="hide-modal" class="waves-effect waves-light btn modal-trigger" href="#">Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <p> 
+          Task List is for demonstrative purposes only, and there is no private login access. Any uploaded data can be viewed and edited by anyone at anytime. As such, please do not include any sensitive information. Any profane, offensive, or inappropriate content is not allowed. The owner of this website reserves the right to view, alter, or delete all content.
+
+          Login information:
+            Username: "test",
+            Password: "password"
+
+          Thanks!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat"> <i class="icon ion-close-round"> </i>
+      </div>
     </div>
 
   </div>  
@@ -195,9 +216,16 @@
             </div> 
         {{/if}}
 
-      </li>
+        {{#if open}}
+        {{else}}
+          <div id="purge"> Remove
+          </div> 
+        {{/if}}
 
-    </ul>
+
+      </li>
+    </ul>    
+
 
   </script> 
 

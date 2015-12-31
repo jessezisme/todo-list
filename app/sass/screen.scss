@@ -19,16 +19,20 @@ input:-webkit-autofill:focus, input:-webkit-autofill:hover, input:-webkit-autofi
 }
 
 
-
+* {
+  font-family: 'Roboto', sans-serif;
+}
 .container {
   @include container; 
   padding-left: 2.5%;
   padding-right: 2.5%;  
 }
-
-* {
-  font-family: 'Roboto', sans-serif;
+body {
+  background: whitesmoke; 
+  min-width: 320px; 
+  margin-bottom: 50px; 
 }
+
 
 header {
   * {
@@ -37,6 +41,9 @@ header {
   nav {
     height: 75px; 
     line-height: 75px; 
+  }
+  .blue-grey {
+    background: #37474f !important; 
   }
 }
 button {
@@ -99,16 +106,33 @@ button {
     text-align: center;
 
     h2 {
-      color: #26a69a;
+      color: white;
       padding-top: 20px;
       font-size: 1.25rem;
       border-bottom: 1px solid #26a69a;
+      background: #78909c; 
     }
 
   }
-
   form {   
     padding: 30px 10%; 
+  }
+
+  #hide-modal {
+    display: none; 
+  }
+
+  #username, #password {
+    text-align: center; 
+  }
+  .ion-close-round {
+    color: #009688; 
+  }
+
+  #modal1 {
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    
   }
 
 }
@@ -122,10 +146,13 @@ button {
   Create task section
 ----------*/
 .taskWindowView {
-
  
   textarea, input {
     padding-bottom: 0 !important;
+  }
+
+  .collapsible {
+    background: white; 
   }
 
   #upload-task {
@@ -195,9 +222,10 @@ button {
 
   #closed-task-header {
     @include transition(all 1s);
-    background: #37474f; 
+    background: #78909c !important; 
     color: white; 
     padding: 20px; 
+    text-align: center; 
   }
 
   #closed-task-header:hover {
@@ -205,10 +233,11 @@ button {
   }
 
   #button-header {
-    width: 100%;
+    @include span(12);
     display: block;
-    margin: 0 auto;
+    margin: 150px auto 20px auto;
     cursor: pointer;  
+    float: none; 
   }
 
   #closed-number {
@@ -230,9 +259,11 @@ button {
   }
   ul {
     @include clearfix(); 
+    font-size: .9rem; 
   }
   #task-body-div {
-    display: none; 
+    display: none;
+    overflow-wrap: break-word !important; 
   }
   .clearfix {
     clear: both;
@@ -241,7 +272,7 @@ button {
   #task-complete {
     @include span(2); 
     display: inline-block; 
-    font-size: 3rem;
+    font-size: 2.25rem;
     color: #1de9b6;
     cursor: pointer; 
     text-align: left;       
@@ -253,6 +284,8 @@ button {
     line-height: 1.5rem !important;
     height: auto; 
     min-height: 50px; 
+    padding-left: 10px !important; 
+    padding-right: 10px !important; 
     overflow-wrap: break-word; 
   }
 
@@ -274,14 +307,15 @@ button {
     @include span(100%);
     text-align: center; 
     cursor: pointer; 
-    background: rgba(236, 239, 241, 0.3);
-    padding: 5px auto;
+    background: rgba(224, 242, 241, 0.32);
+    padding-top: 5px;
+    padding-bottom: 5px; 
     margin: 0; 
-    color: #004d40; 
+    color: #5A5858; 
 
     #extend {
       font-size: 2rem; 
-      color: #004d40;    
+      color: #5A5858;    
     }
   }
   #task-body-div {
@@ -303,7 +337,7 @@ button {
     i {
       display: inline-block; 
       float: right; 
-      font-size: 2.5rem !important;  
+      font-size: 2.25rem !important;  
       color: #1de9b6;
     }
 
@@ -313,17 +347,14 @@ button {
 
   }
 
+  #purge {
+    clear: both;
+    display: block;
+    background: #ffccbc;
+    padding: 7px;
+    text-align: center;
+    color: black;    
+    cursor: pointer; 
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

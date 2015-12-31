@@ -12,6 +12,11 @@ App.View.Login = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({}));
     $('#body-wrap').append(this.$el);  
+
+    if (  !(Cookies.set('todo') )) {      
+      $('#modal1').openModal();
+    }
+
   },
 
   events: {

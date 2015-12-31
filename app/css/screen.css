@@ -143,7 +143,12 @@ input:-webkit-autofill:focus, input:-webkit-autofill:hover, input:-webkit-autofi
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
-/* line 23, ../sass/screen.scss */
+/* line 22, ../sass/screen.scss */
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* line 25, ../sass/screen.scss */
 .container {
   max-width: 1400px;
   margin-left: auto;
@@ -158,22 +163,28 @@ input:-webkit-autofill:focus, input:-webkit-autofill:hover, input:-webkit-autofi
   clear: both;
 }
 
-/* line 29, ../sass/screen.scss */
-* {
-  font-family: 'Roboto', sans-serif;
+/* line 30, ../sass/screen.scss */
+body {
+  background: whitesmoke;
+  min-width: 320px;
+  margin-bottom: 50px;
 }
 
-/* line 34, ../sass/screen.scss */
+/* line 38, ../sass/screen.scss */
 header * {
   font-family: 'Roboto';
 }
-/* line 37, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 header nav {
   height: 75px;
   line-height: 75px;
 }
+/* line 45, ../sass/screen.scss */
+header .blue-grey {
+  background: #37474f !important;
+}
 
-/* line 42, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 button {
   background: transparent;
   border: none;
@@ -184,19 +195,19 @@ button {
    Login
 ==============================
 */
-/* line 55, ../sass/screen.scss */
+/* line 62, ../sass/screen.scss */
 .login-view h2 {
   padding-bottom: 30px;
 }
-/* line 58, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 .login-view .login-wrap {
   padding-bottom: 20px;
 }
-/* line 62, ../sass/screen.scss */
+/* line 69, ../sass/screen.scss */
 .login-view #button-div {
   margin: 20px auto;
 }
-/* line 66, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 .login-view #button-wrap {
   width: 98.33333%;
   float: left;
@@ -208,7 +219,7 @@ button {
   float: none !important;
   margin: 20px auto;
 }
-/* line 73, ../sass/screen.scss */
+/* line 80, ../sass/screen.scss */
 .login-view #button-wrap a {
   width: 48.33333%;
   float: left;
@@ -216,15 +227,15 @@ button {
   margin-right: 0.83333%;
   display: inline-block;
 }
-/* line 79, ../sass/screen.scss */
+/* line 86, ../sass/screen.scss */
 .login-view #new-user, .login-view #login {
   display: none !important;
 }
-/* line 84, ../sass/screen.scss */
+/* line 91, ../sass/screen.scss */
 .login-view .register {
   background: transparent !important;
 }
-/* line 88, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 .login-view #form {
   width: 98.33333%;
   float: left;
@@ -233,7 +244,7 @@ button {
   max-width: 400px;
   clear: left;
 }
-/* line 94, ../sass/screen.scss */
+/* line 101, ../sass/screen.scss */
 .login-view #form-wrap {
   width: 98.33333%;
   float: left;
@@ -244,16 +255,34 @@ button {
   float: none;
   text-align: center;
 }
-/* line 101, ../sass/screen.scss */
+/* line 108, ../sass/screen.scss */
 .login-view #form-wrap h2 {
-  color: #26a69a;
+  color: white;
   padding-top: 20px;
   font-size: 1.25rem;
   border-bottom: 1px solid #26a69a;
+  background: #78909c;
 }
-/* line 110, ../sass/screen.scss */
+/* line 117, ../sass/screen.scss */
 .login-view form {
   padding: 30px 10%;
+}
+/* line 121, ../sass/screen.scss */
+.login-view #hide-modal {
+  display: none;
+}
+/* line 125, ../sass/screen.scss */
+.login-view #username, .login-view #password {
+  text-align: center;
+}
+/* line 128, ../sass/screen.scss */
+.login-view .ion-close-round {
+  color: #009688;
+}
+/* line 132, ../sass/screen.scss */
+.login-view #modal1 {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 /* 
@@ -264,17 +293,21 @@ button {
 /*----------  
   Create task section
 ----------*/
-/* line 124, ../sass/screen.scss */
+/* line 148, ../sass/screen.scss */
 .taskWindowView {
   /*----------  
     Open/Closed Task Section
   ----------*/
 }
-/* line 127, ../sass/screen.scss */
+/* line 150, ../sass/screen.scss */
 .taskWindowView textarea, .taskWindowView input {
   padding-bottom: 0 !important;
 }
-/* line 131, ../sass/screen.scss */
+/* line 154, ../sass/screen.scss */
+.taskWindowView .collapsible {
+  background: white;
+}
+/* line 158, ../sass/screen.scss */
 .taskWindowView #upload-task {
   width: 98.33333%;
   float: left;
@@ -287,14 +320,14 @@ button {
   margin: 0 auto;
   float: none !important;
 }
-/* line 140, ../sass/screen.scss */
+/* line 167, ../sass/screen.scss */
 .taskWindowView #task-title-wrap {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
 }
-/* line 144, ../sass/screen.scss */
+/* line 171, ../sass/screen.scss */
 .taskWindowView #description {
   width: 98.33333%;
   float: left;
@@ -302,14 +335,14 @@ button {
   margin-right: 0.83333%;
   padding-left: 50px;
 }
-/* line 149, ../sass/screen.scss */
+/* line 176, ../sass/screen.scss */
 .taskWindowView #date-wrap {
   width: 73.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
 }
-/* line 153, ../sass/screen.scss */
+/* line 180, ../sass/screen.scss */
 .taskWindowView #star-wrap {
   width: 23.33333%;
   float: left;
@@ -317,21 +350,21 @@ button {
   margin-right: 0.83333%;
   text-align: center;
 }
-/* line 157, ../sass/screen.scss */
+/* line 184, ../sass/screen.scss */
 .taskWindowView #star-wrap button {
   border: none;
   background: transparent !important;
 }
-/* line 161, ../sass/screen.scss */
+/* line 188, ../sass/screen.scss */
 .taskWindowView #star-wrap i {
   font-size: 3.5rem;
   color: rgba(0, 0, 0, 0.3);
 }
-/* line 165, ../sass/screen.scss */
+/* line 192, ../sass/screen.scss */
 .taskWindowView #star-wrap .star-true {
   color: #1de9b6;
 }
-/* line 170, ../sass/screen.scss */
+/* line 197, ../sass/screen.scss */
 .taskWindowView #button-wrap {
   width: 98.33333%;
   float: left;
@@ -340,45 +373,50 @@ button {
   text-align: center;
   padding-top: 25px;
 }
-/* line 180, ../sass/screen.scss */
+/* line 207, ../sass/screen.scss */
 .taskWindowView #open-task-div, .taskWindowView #closed-task-div {
   max-width: 800px;
   margin: 20px auto 50px auto;
   clear: left;
 }
-/* line 186, ../sass/screen.scss */
+/* line 213, ../sass/screen.scss */
 .taskWindowView #closed-task-div {
   display: none;
 }
-/* line 190, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 .taskWindowView #open-task-header, .taskWindowView #closed-task-header {
   display: block;
   max-width: 800px;
   margin: 50px auto 20px auto;
 }
-/* line 196, ../sass/screen.scss */
+/* line 223, ../sass/screen.scss */
 .taskWindowView #closed-task-header {
   -moz-transition: all 1s;
   -o-transition: all 1s;
   -webkit-transition: all 1s;
   transition: all 1s;
-  background: #37474f;
+  background: #78909c !important;
   color: white;
   padding: 20px;
+  text-align: center;
 }
-/* line 203, ../sass/screen.scss */
+/* line 231, ../sass/screen.scss */
 .taskWindowView #closed-task-header:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
 }
-/* line 207, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 .taskWindowView #button-header {
-  width: 100%;
+  width: 98.33333%;
+  float: left;
+  margin-left: 0.83333%;
+  margin-right: 0.83333%;
   display: block;
-  margin: 0 auto;
+  margin: 150px auto 20px auto;
   cursor: pointer;
+  float: none;
 }
-/* line 214, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 .taskWindowView #closed-number {
   padding-left: 30px;
 }
@@ -388,37 +426,39 @@ button {
    Individual Task 
 ==============================
 */
-/* line 228, ../sass/screen.scss */
+/* line 257, ../sass/screen.scss */
 .taskView li {
   border: none !important;
 }
-/* line 231, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .taskView ul {
   overflow: hidden;
   *zoom: 1;
+  font-size: .9rem;
 }
-/* line 234, ../sass/screen.scss */
+/* line 264, ../sass/screen.scss */
 .taskView #task-body-div {
   display: none;
+  overflow-wrap: break-word !important;
 }
-/* line 237, ../sass/screen.scss */
+/* line 268, ../sass/screen.scss */
 .taskView .clearfix {
   clear: both;
   width: 100%;
 }
-/* line 241, ../sass/screen.scss */
+/* line 272, ../sass/screen.scss */
 .taskView #task-complete {
   width: 15%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
   display: inline-block;
-  font-size: 3rem;
+  font-size: 2.25rem;
   color: #1de9b6;
   cursor: pointer;
   text-align: left;
 }
-/* line 250, ../sass/screen.scss */
+/* line 281, ../sass/screen.scss */
 .taskView .title-wrap {
   width: 65%;
   float: left;
@@ -428,28 +468,30 @@ button {
   line-height: 1.5rem !important;
   height: auto;
   min-height: 50px;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
   overflow-wrap: break-word;
 }
-/* line 259, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .taskView .date-div {
   width: 98.33333%;
   float: left;
   margin-left: 0.83333%;
   margin-right: 0.83333%;
 }
-/* line 262, ../sass/screen.scss */
+/* line 295, ../sass/screen.scss */
 .taskView .date {
   display: inline;
   float: left;
   color: #00695c;
 }
-/* line 267, ../sass/screen.scss */
+/* line 300, ../sass/screen.scss */
 .taskView .until-due {
   display: inline;
   float: right;
   color: #00695c;
 }
-/* line 273, ../sass/screen.scss */
+/* line 306, ../sass/screen.scss */
 .taskView #extend-wrap {
   width: 100%;
   float: left;
@@ -457,21 +499,22 @@ button {
   margin-right: 0.83333%;
   text-align: center;
   cursor: pointer;
-  background: rgba(236, 239, 241, 0.3);
-  padding: 5px auto;
+  background: rgba(224, 242, 241, 0.32);
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin: 0;
-  color: #004d40;
+  color: #5A5858;
 }
-/* line 282, ../sass/screen.scss */
+/* line 316, ../sass/screen.scss */
 .taskView #extend-wrap #extend {
   font-size: 2rem;
-  color: #004d40;
+  color: #5A5858;
 }
-/* line 287, ../sass/screen.scss */
+/* line 321, ../sass/screen.scss */
 .taskView #task-body-div {
   padding: 20px 30px;
 }
-/* line 290, ../sass/screen.scss */
+/* line 324, ../sass/screen.scss */
 .taskView #task-header-div {
   overflow: hidden;
   *zoom: 1;
@@ -481,11 +524,11 @@ button {
   margin-right: 0.83333%;
   margin-bottom: 20px;
 }
-/* line 295, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 .taskView .collapsible-header {
   padding: 15px 10px !important;
 }
-/* line 299, ../sass/screen.scss */
+/* line 333, ../sass/screen.scss */
 .taskView #star-wrap-task {
   width: 15%;
   float: left;
@@ -493,14 +536,24 @@ button {
   margin-right: 0.83333%;
   text-align: right;
 }
-/* line 303, ../sass/screen.scss */
+/* line 337, ../sass/screen.scss */
 .taskView #star-wrap-task i {
   display: inline-block;
   float: right;
-  font-size: 2.5rem !important;
+  font-size: 2.25rem !important;
   color: #1de9b6;
 }
-/* line 310, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .taskView #star-wrap-task .star-true {
   color: #1de9b6;
+}
+/* line 350, ../sass/screen.scss */
+.taskView #purge {
+  clear: both;
+  display: block;
+  background: #ffccbc;
+  padding: 7px;
+  text-align: center;
+  color: black;
+  cursor: pointer;
 }
