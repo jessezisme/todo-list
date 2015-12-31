@@ -162,6 +162,6 @@ app.delete('/task/:id', function(req, res) {
 /*=============================================
 =           Run Server       =
 =============================================*/ 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(app.get('port'), function () {
     console.log("server started");
 });
