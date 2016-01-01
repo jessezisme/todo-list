@@ -77,16 +77,19 @@ app.get('/collection/:id', function(req, res) {
   /*----------  
     URL includes USER NAME, which is used to fetch correct user's tasks
   ----------*/
-  // console.log('get collection/:id request: ' + req.params.id);  
   var todoUser = req.params.id;
   var finalTasks = [];
   var counter = 0; 
   var nextPageVerify = false; 
 
+/*----------  
+  Orchestrate caps each query at 100 results, requiring a return to the database
+  to retrieve the remainder; 
+  This function will keep querying the database, compiling all the results, and return them
+  all at once;
+----------*/
 
   function fetchData(nextPageResults) {
-    console.log('goodbye')
-
     var nextPage = nextPageResults; 
 
     if (counter === 0) {
@@ -103,12 +106,10 @@ app.get('/collection/:id', function(req, res) {
           finalTasks.push(taskCollection[i].value); 
         }
         if (result.links) {
-          console.log('hello if');
           nextPageVerify = true; 
           fetchData(result.links.next)
         }
         else { 
-          console.log('hello else')
           res.send(finalTasks)
         }
       });
@@ -117,7 +118,6 @@ app.get('/collection/:id', function(req, res) {
       nextPage.get().then(function(result) {
 
         var taskCollection = result.body.results;
-        console.log('shit')
 
         for (var i = 0; i < taskCollection.length; i++) {
           finalTasks.push(taskCollection[i].value);
@@ -132,7 +132,6 @@ app.get('/collection/:id', function(req, res) {
       })
     }
     else {
-      console.log('shit')
       res.send(finalTasks);
     }
   }
@@ -171,9 +170,6 @@ app.post('/task', function(req, res) {
 =           Save Model       =
 =============================================*/  
 app.put('/task/:id', function(req, res) {
-
-  console.log('task put request; model ID is: ' + req.params.id);
-  console.log("task put request body is: " + req.body); 
   var key = req.params.id;   
 
   db.put('todo-tasks', key, req.body)
@@ -191,7 +187,6 @@ app.put('/task/:id', function(req, res) {
 =           Delete Model       =
 =============================================*/  
 app.delete('/task/:id', function(req, res) {
-  console.log('delete request');
   var key = req.params.id;  
 
   var deleteResponse = {
@@ -213,5 +208,4 @@ app.delete('/task/:id', function(req, res) {
 =           Run Server       =
 =============================================*/ 
 app.listen(app.get('port'), function () {
-    console.log("server started");
 });

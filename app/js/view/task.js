@@ -23,7 +23,6 @@ App.View.TaskWindow = Backbone.View.extend({
 
     app.collection.task.fetch({
       success: function(resModel, response, options) {
-        // console.log('app.collection.task.fetch: SUCCESS');
 
         app.collection.task.forEach(function(taskModel) {  
           if (taskModel.get('due')) {
@@ -50,7 +49,6 @@ App.View.TaskWindow = Backbone.View.extend({
           var oldestClosedTask = closedTasks.pop();
           oldestClosedTask.destroy({
             success: function(model, response) {
-              console.log('model deleted')
             }
           });
         }
@@ -76,9 +74,7 @@ App.View.TaskWindow = Backbone.View.extend({
         })();
 
       },
-
       failure: function(resModel, response, options) {
-        // console.log("ERROR ERROR: Task Collection failed to load from server"));
       }
 
     });
@@ -217,7 +213,6 @@ App.View.TaskWindow = Backbone.View.extend({
     ----------*/  
     app.model.task.save({}, {wait: true})
       .done(function(response) {
-        // console.log("app.model.task: successful save"); 
         /*----------  
           Only if model is successfully saved to server:
           - Create view for model; & 
@@ -374,7 +369,6 @@ App.View.Task = Backbone.View.extend({
     - Remove and Create New View         
   =============================================*/
   complete: function(event) {
-    console.log('toggle completion')
     var self = this; 
             self.remove();
 
