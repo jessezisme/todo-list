@@ -1,16 +1,11 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-
-var sass = require('gulp-sass');
 var compass = require('gulp-compass');
 var simpleCompass = require('gulp-simple-compass');
-
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
-var sourcemaps = require('gulp-sourcemaps');
-var gulpFilter = require('gulp-filter');
-var mainBower = require('main-bower-files');
-var cssnano = require('gulp-cssnano');
+var sourceMaps = require('gulp-sourcemaps');
+var cssNano = require('gulp-cssnano');
 
 
 /*=============================================
@@ -27,12 +22,16 @@ gulp.task('sass', function(cb) {
 				this.emit('end'); 
 			}
 		}))
+		.pipe(sourceMaps.init())
 		.pipe(compass({
 			config_file: './config.rb',
 			css: 'app/css',
-			sass: 'app/sass'
-		}))
-		.pipe(cssnano())
+			sass: 'app/sass',
+			sourcemap: true
+		}))		
+		.pipe(cssNano())
+		.pipe(sourceMaps.write('./'))		
+		.pipe(plumber.stop())
 		.pipe(gulp.dest('app/css'));		
 });
 /*===========*/
@@ -62,10 +61,11 @@ gulp.task('js', function() {
 			this.emit('end'); 
 		}
 	}))
-	.pipe(sourcemaps.init())
+	.pipe(sourceMaps.init())	
 	.pipe(concat('all.js'))
 	.pipe(uglify())
-	.pipe(sourcemaps.write())
+	.pipe(sourceMaps.write('./'))
+	.pipe(plumber.stop())
 	.pipe(gulp.dest('./app/js'))
 })
 /*===========*/
